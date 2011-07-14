@@ -1,0 +1,21 @@
+-- Describe HAM
+CREATE TABLE ham(
+    "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "removed" INTEGER
+    "elementID" TEXT,
+    "element" TEXT,
+    "subelement" TEXT,
+    "subgroup" TEXT,
+    "question" TEXT,
+    "questionnum" INTEGER
+    "FCC" TEXT,
+    "stem" TEXT,
+    "key" TEXT,
+    "distractor1" TEXT,
+    "distractor2" TEXT,
+    "distractor3" TEXT,
+    "illustration" BLOB,
+    "hint" TEXT,
+    "teaching" TEXT,
+    "teaching_illustration" BLOB
+)
