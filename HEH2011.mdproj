@@ -13,6 +13,8 @@
     <Packages>
       <Packages>
         <ProjectPackage file="/usr/share/vala/vapi/glib-2.0.vapi" name="glib-2.0" IsProject="false" />
+        <ProjectPackage file="/usr/share/vala/vapi/gtk+-2.0.vapi" name="gtk+-2.0" IsProject="false" />
+        <ProjectPackage file="/usr/share/vala/vapi/gmodule-2.0.vapi" name="gmodule-2.0" IsProject="false" />
       </Packages>
     </Packages>
   </PropertyGroup>
@@ -45,5 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="src\main.vala" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\sample.ui">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
