@@ -1,0 +1,8 @@
+All source is under GPL V3 or later
+
+To install:
+./waf configure
+./waf
+./checkinstall --fstrans=no --nodoc ./waf install
+DESTDIR=/tmp ./waf install
+

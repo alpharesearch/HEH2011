@@ -1,0 +1,12 @@
+#! /usr/bin/env python
+# encoding: utf-8
+# Markus Schulz, 2011
+
+prog_in_default = bld.new_task_gen(
+	features = 'cc cprogram',
+	packages = 'gtk+-2.0',
+	target = 'HEH2011',
+	uselib = 'GTK GLIB',
+	)
+prog_in_default.find_sources_in_dirs('.') # take the sources in the current folder
+prog_in_debug = prog_in_default.clone('debug')
