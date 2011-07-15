@@ -8,6 +8,17 @@ using GLib;
 using Sqlite;
 
 public class SqliteSample : GLib.Object {
+	
+	public static int callback (int n_columns, string[] values,
+                                string[] column_names)
+    {
+        for (int i = 0; i < n_columns; i++) {
+            stdout.printf ("%s = %s\n", column_names[i], values[i]);
+        }
+        stdout.printf ("\n");
+
+        return 0;
+    }
 
     public static int main (string[] args) {
         Database db;
@@ -20,7 +31,7 @@ public class SqliteSample : GLib.Object {
             return 1;
         }
 
-		string test = """CREATE TABLE examquestions(
+		string examquestions = """CREATE TABLE examquestions(
 "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
 "removed" INTEGER,
 "elnum" TEXT,
@@ -33,19 +44,30 @@ public class SqliteSample : GLib.Object {
 "illustration" BLOB
 )""";
 
-        rc = db.exec(test, (n_columns, values, column_names) => {
+		string viewt ="""CREATE VIEW "T" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "T%"""";
+		string viewg ="""CREATE VIEW "G" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%"""";
+		string viewe ="""CREATE VIEW "E" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "E%"""";
+        /*rc = db.exec(examquestions, (n_columns, values, column_names) => {
             for (int i = 0; i < n_columns; i++) {
                 stdout.printf ("%s = %s\n", column_names[i], values[i]);
             }
             stdout.printf ("\n");
 
             return 0;
-            }, null);
+            }, null);*/
 
-        if (rc != Sqlite.OK) { 
+        if ((rc = db.exec (examquestions, callback, null)) != Sqlite.OK) { 
             stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
-        }
-        
+            }
+        if ((rc = db.exec (viewt, callback, null)) != Sqlite.OK) { 
+            stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+            }
+        if ((rc = db.exec (viewg, callback, null)) != Sqlite.OK) { 
+            stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+            }
+        if ((rc = db.exec (viewe, callback, null)) != Sqlite.OK) { 
+            stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+            }
     var file = File.new_for_path ("pools.txt");
 
     if (!file.query_exists ()) {
@@ -55,7 +77,8 @@ public class SqliteSample : GLib.Object {
 
 Regex tRegEx = /~~~/;
 Regex regtest = /(^(T|G|E)\d[a-zA-Z]\d\d)*.\(([A-D])\)(.*)/;
-
+Regex filereg = /figure\s([TGE0-9-]*)(\s|\?|,)/i;
+int counter=0;
     try {
         var dis = new DataInputStream (file.read());
         string line;
@@ -70,31 +93,63 @@ Regex regtest = /(^(T|G|E)\d[a-zA-Z]\d\d)*.\(([A-D])\)(.*)/;
             string fcc = "";
             if (strbuf[4]!=null) fcc = strbuf[4];
             string quest = dis.read_line (null).chomp(); //stem
-            string ansA = dis.read_line (null).offset(2).chomp();
-            string ansB = dis.read_line (null).offset(2).chomp();
-            string ansC = dis.read_line (null).offset(2).chomp();
-            string ansD = dis.read_line (null).offset(2).chomp();
-            string test2="";
+            string ansA = dis.read_line (null).offset(2)._strip ().chomp();
+            string ansB = dis.read_line (null).offset(2)._strip ().chomp();
+            string ansC = dis.read_line (null).offset(2)._strip ().chomp();
+            string ansD = dis.read_line (null).offset(2)._strip ().chomp();
             
-            if(answer=="A") test2 = """INSERT INTO examquestions ("elnum","FCC","stem","key","distractor1","distractor2","distractor3") VALUES (""" + @"'$elnum','$fcc','$quest','$ansA','$ansB','$ansC','$ansD'"+""")""";
-            if(answer=="B") test2 = """INSERT INTO examquestions ("elnum","FCC","stem","key","distractor1","distractor2","distractor3") VALUES (""" + @"'$elnum','$fcc','$quest','$ansB','$ansA','$ansC','$ansD'"+""")""";
-            if(answer=="C") test2 = """INSERT INTO examquestions ("elnum","FCC","stem","key","distractor1","distractor2","distractor3") VALUES (""" + @"'$elnum','$fcc','$quest','$ansC','$ansB','$ansA','$ansD'"+""")""";
-            if(answer=="D") test2 = """INSERT INTO examquestions ("elnum","FCC","stem","key","distractor1","distractor2","distractor3") VALUES (""" + @"'$elnum','$fcc','$quest','$ansD','$ansB','$ansC','$ansA'"+""")""";
-
-			rc = db.exec(test2, (n_columns, values, column_names) => {
-            for (int i = 0; i < n_columns; i++) {
-                stdout.printf ("%s = %s\n", column_names[i], values[i]);
-            }
-            stdout.printf ("\n");
-
-            return 0;
-            }, null);
-
-        if (rc != Sqlite.OK) { 
-            stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
-            stderr.printf(test2+"\n");
-        }
+            string ba= @"'$elnum','$fcc','$quest',";
             
+            string qa="";
+            if(answer=="A") qa = @"'$ansA','$ansB','$ansC','$ansD'";
+            if(answer=="B") qa = @"'$ansB','$ansA','$ansC','$ansD'";
+            if(answer=="C") qa = @"'$ansC','$ansB','$ansA','$ansD'";
+            if(answer=="D") qa = @"'$ansD','$ansB','$ansC','$ansA'";
+			
+			string[] fname = filereg.split(quest);
+			if (fname[1] != null)
+			{
+				var file2 = File.new_for_path (fname[1]+".jpg");
+				counter++;
+				stdout.printf ("%i blob file %s\n", counter ,fname[1]);
+				if (!file2.query_exists ()) {
+					stderr.printf ("File '%s' doesn't exist.\n", file2.get_path ());
+					return 1;
+				}
+				var file_info = file2.query_info ("*", FileQueryInfoFlags.NONE);
+				
+				var file_stream = file2.read ();
+				var data_stream = new DataInputStream (file_stream);
+				uint8[] buffer = new uint8[file_info.get_size ()];
+				//file_stream.seek (image_data_offset, SeekType.CUR);
+				data_stream.read (buffer);
+				string dbstr = """INSERT INTO examquestions ("elnum","FCC","stem","key","distractor1","distractor2","distractor3","illustration") VALUES (""" + ba + qa +""",?)""";
+				Statement stmt;
+				if ((rc = db.prepare_v2 (dbstr, -1, out stmt, null)) == 1) {
+					printerr ("SQL error: %d, %s\n", rc, db.errmsg ());
+					return 1;
+				}
+				stmt.bind_blob(1, buffer, (int) file_info.get_size (), null);
+				stmt.step();
+			}
+			else 
+			{
+				string dbstr = """INSERT INTO examquestions ("elnum","FCC","stem","key","distractor1","distractor2","distractor3") VALUES (""" + ba + qa +""")""";
+				rc = db.exec(dbstr, (n_columns, values, column_names) => {
+				for (int i = 0; i < n_columns; i++) {
+					stdout.printf ("%s = %s\n", column_names[i], values[i]);
+				}
+				stdout.printf ("\n");
+
+				return 0;
+				}, null);
+
+				if (rc != Sqlite.OK) { 
+					stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+					stderr.printf(dbstr + "\n");
+				}
+			}
+			
 			}
         }
     } catch (Error e) {

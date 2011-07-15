@@ -1,3 +1,18 @@
+SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%%%%";
+
+Operator 	Description
+= 	Equal
+<> 	Not equal
+> 	Greater than
+< 	Less than
+>= 	Greater than or equal
+<= 	Less than or equal
+BETWEEN 	Between an inclusive range
+LIKE 	Search for a pattern
+IN 	If you know the exact value you want to return for at least one of the columns
+AND
+OR
+
 -- Describe HAM
 CREATE TABLE ham(
     "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,3 +48,5 @@ CREATE TABLE examquestions(
     "distractor3" TEXT,
     "illustration" BLOB,
 )
+
+SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%%%%";
