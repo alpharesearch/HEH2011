@@ -28,9 +28,11 @@
  #
 use strict;
 open PINPUT,"<Element 3 Pool.txt";
-open POUTPUT,">Element 3 Pool_C.txt";
+open POUTPUT,">3.txt";
 while(<PINPUT>)
 	{
+		s/'/`/;
+		s/'/`/;
 		chomp;
 		if (/~~/){print 'skip';}
 		else{

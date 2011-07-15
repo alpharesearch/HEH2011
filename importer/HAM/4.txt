@@ -24,7 +24,7 @@ D. 3 kHz above the lower band edge
 
 ~~~
 E1A03 (C) [97.301, 97.305] 
-With your transceiver displaying the carrier frequency of phone signals, you hear a DX station's CQ on 14.349 MHz USB. Is it legal to return the call using upper sideband on the same frequency?
+With your transceiver displaying the carrier frequency of phone signals, you hear a DX station`s CQ on 14.349 MHz USB. Is it legal to return the call using upper sideband on the same frequency?
 A. Yes, because the DX station initiated the contact
 B. Yes, because the displayed frequency is within the 20 meter band
 C. No, my sidebands will extend beyond the band edge 
@@ -32,7 +32,7 @@ D. No, USA stations are not permitted to use phone emissions above 14.340 MHz
 
 ~~~
 E1A04 (C) [97.301, 97.305] 
-With your transceiver displaying the carrier frequency of phone signals, you hear a DX station's CQ on 3.601 MHz LSB. Is it legal to return the call using lower sideband on the same frequency?
+With your transceiver displaying the carrier frequency of phone signals, you hear a DX station`s CQ on 3.601 MHz LSB. Is it legal to return the call using lower sideband on the same frequency?
 A. Yes, because the DX station initiated the contact
 B. Yes, because the displayed frequency is within the 75 meter phone band segment
 C. No, my sidebands will extend beyond the edge of the phone band segment
@@ -126,7 +126,7 @@ D. An emission outside its necessary bandwidth that can be reduced or eliminated
 E1B02 (D) [97.13] 
 Which of the following factors might cause the physical location of an amateur station apparatus or antenna structure to be restricted?
 A. The location is in or near an area of political conflict, military maneuvers or major construction
-B. The location's geographical or horticultural importance 
+B. The location`s geographical or horticultural importance 
 C. The location is in an ITU zone designated for coordination with one or more foreign governments
 D. The location is significant to our environment, American history, architecture, or culture.
 
@@ -190,7 +190,7 @@ D. A radio service using local government frequencies by Amateur Radio operators
 E1B10 (C) [97.407] 
 Which amateur stations may be operated in RACES?
 A. Only those club stations licensed to Amateur Extra class operators
-B. Any FCC-licensed amateur station except a Technician class operator's station
+B. Any FCC-licensed amateur station except a Technician class operator`s station
 C. Any FCC-licensed amateur station certified by the responsible civil defense organization for the area served
 D. Any FCC-licensed amateur station participating in the Military Affiliate Radio System (MARS)
 
@@ -204,7 +204,7 @@ D. Military Affiliate Radio System (MARS) channels
 
 ~~~
 E1B12 (B) [97.407] 
-What are the frequencies authorized to an amateur station participating in RACES during a period when the President's War Emergency Powers are in force?
+What are the frequencies authorized to an amateur station participating in RACES during a period when the President`s War Emergency Powers are in force?
 A. All frequencies in the amateur service authorized to the control operator
 B. Specific amateur service frequency segments authorized in FCC Part 214
 C. Specific local government channels
@@ -332,7 +332,7 @@ D. An amateur station that transmits telemetry consisting of measurements of upp
 ~~~
 E1D04 (A) [97.3]
 What is an Earth station in the amateur satellite service?
-A. An amateur station within 50 km of the Earth's surface for communications with amateur stations by means of objects in space
+A. An amateur station within 50 km of the Earth`s surface for communications with amateur stations by means of objects in space
 B. An amateur station that is not able to communicate using amateur satellites
 C. An amateur station that transmits telemetry consisting of measurement of upper atmosphere data from space
 D. Any amateur station on the surface of the Earth
@@ -536,7 +536,7 @@ D. Destroy the application form
 ~~~
 E1E17 (A) [97.519]
 What are the consequences of failing to appear for re-administration of an examination when so directed by the FCC?
-A. The licensee's license will be cancelled
+A. The licensee`s license will be cancelled
 B. The person may be fined or imprisoned
 C. The licensee is disqualified from any future examination for an amateur operator license grant
 D. All of the above
@@ -603,7 +603,7 @@ D. All RF amplifiers produced by that manufacturer may be marketed
 ~~~
 E1F05 (A) [97.315] 
 Under what circumstances may a dealer sell an external RF power amplifier capable of operation below 144 MHz if it has not been granted FCC certification?
-A. It was purchased in used condition from an amateur operator and is sold to another amateur operator for use at that operator's station
+A. It was purchased in used condition from an amateur operator and is sold to another amateur operator for use at that operator`s station
 B. The equipment dealer assembled it from a kit
 C. It was imported from a manufacturer in a country that does not require certification of RF power amplifiers
 D. It was imported from a manufacturer in another country, and it was certificated by that country’s government
@@ -678,7 +678,7 @@ Which of the following best describes one of the standards that must be met by a
 A. It must produce full legal output when driven by not more than 5 watts of mean RF input power
 B. It must be capable of external RF switching between its input and output networks
 C. It must exhibit a gain of 0 dB or less over its full output range
-D. It must satisfy the FCC's spurious emission standards when operated at its full output power
+D. It must satisfy the FCC`s spurious emission standards when operated at its full output power
 
 ~~~
 E1F15 (B) [97.201]
@@ -729,8 +729,8 @@ D. From south to north
 ~~~
 E2A03 (C) 
 What is the orbital period of a satellite?
-A. The point of maximum height of a satellite's orbit
-B. The point of minimum height of a satellite's orbit
+A. The point of maximum height of a satellite`s orbit
+B. The point of minimum height of a satellite`s orbit
 C. The time it takes for a satellite to complete one revolution around the Earth
 D. The time it takes for a satellite to travel from perigee to apogee
 
@@ -738,13 +738,13 @@ D. The time it takes for a satellite to travel from perigee to apogee
 E2A04 (B)
 What is meant by the term “mode” as applied to an amateur radio satellite?
 A. The type of signals that can be relayed through the satellite
-B. The satellite's uplink and downlink frequency bands 
-C. The satellite's orientation with respect to the Earth
+B. The satellite`s uplink and downlink frequency bands 
+C. The satellite`s orientation with respect to the Earth
 D. Whether the satellite is in a polar or equatorial orbit
 
 ~~~
 E2A05 (D)
-What do the letters in a satellite's mode designator specify?
+What do the letters in a satellite`s mode designator specify?
 A. Power limits for uplink and downlink transmissions
 B. The location of the ground control station
 C. The polarization of uplink and downlink signals
@@ -788,7 +788,7 @@ E2A10 (A)
 Why may the received signal from an amateur satellite exhibit a rapidly repeating fading effect? 
 A. Because the satellite is rotating
 B. Because of ionospheric absorption
-C. Because of the satellite's low orbital altitude
+C. Because of the satellite`s low orbital altitude
 D. Because of the Doppler effect
 
 ~~~
@@ -817,7 +817,7 @@ D. LEO
 
 ~~~
 E2A14 (B)
-What happens to a satellite's transmitted signal due to the Doppler Effect?
+What happens to a satellite`s transmitted signal due to the Doppler Effect?
 A. The signal strength is reduced as the satellite passes overhead
 B. The signal frequency shifts lower as the satellite passes overhead
 C. The signal frequency shifts higher as the satellite passes overhead
@@ -1178,7 +1178,7 @@ E2D10 (C)
 How can an APRS station be used to help support a public service communications activity?
 A. An APRS station with an emergency medical technician can automatically transmit medical data to the nearest hospital
 B. APRS stations with General Personnel Scanners can automatically relay the participant numbers and time as they pass the check points
-C. An APRS station with a GPS unit can automatically transmit information to show a mobile station's position during the event
+C. An APRS station with a GPS unit can automatically transmit information to show a mobile station`s position during the event
 D. All of these choices are correct
 
 ~~~
@@ -1265,8 +1265,6 @@ B. PACTOR
 C. MT63
 D. PSK31
 
-~~~
-***** E2E10  This question has been removed by the QPC 
 
 ~~~
 E2E11 (D)
@@ -1356,7 +1354,7 @@ D. 432.000 - 432.100 MHz
 
 ~~~
 E3A09 (A) 
-When a meteor strikes the Earth's atmosphere, a cylindrical region of free electrons is formed at what layer of the ionosphere?
+When a meteor strikes the Earth`s atmosphere, a cylindrical region of free electrons is formed at what layer of the ionosphere?
 A. The E layer
 B. The F1 layer
 C. The F2 layer
@@ -1567,7 +1565,7 @@ As the frequency of a signal is increased, how does its ground wave propagation 
 A. It increases
 B. It decreases
 C. It stays the same
-D. Radio waves don't propagate along the Earth's surface
+D. Radio waves don`t propagate along the Earth`s surface
 
 ~~~
 E3C13 (A)
@@ -1784,7 +1782,7 @@ How should a portable SWR analyzer be connected when measuring antenna resonance
 A. Loosely couple the analyzer near the antenna base
 B. Connect the analyzer via a high-impedance transformer to the antenna
 C. Connect the antenna and a dummy load to the analyzer
-D. Connect the antenna feed line directly to the analyzer's connector
+D. Connect the antenna feed line directly to the analyzer`s connector
 
 ~~~
 E4B13 (A)   
@@ -1812,7 +1810,7 @@ D. Intermodulation distortion occurs
 
 ~~~
 E4B16 (B)  
-Which of these factors limits the accuracy of a D'Arsonval-type meter?
+Which of these factors limits the accuracy of a D`Arsonval-type meter?
 A. Its magnetic flux density
 B. Coil impedance
 C. Deflection rate
@@ -1823,7 +1821,7 @@ E4B17 (C)
 Which of the following can be used as a relative measurement of the Q for a series-tuned circuit?
 A. The inductance to capacitance ratio
 B. The frequency shift
-C. The bandwidth of the circuit's frequency response 
+C. The bandwidth of the circuit`s frequency response 
 D. The resonant frequency of the circuit
 
 ~~
@@ -2094,8 +2092,8 @@ E4E04 (D)
 How can conducted and radiated noise caused by an automobile alternator be suppressed?
 A. By installing filter capacitors in series with the DC power lead and by installing a blocking capacitor in the field lead
 B. By connecting the radio to the battery by the longest possible path and installing a blocking capacitor in both leads
-C. By installing a high-pass filter in series with the radio's power lead and a low-pass filter in parallel with the field lead
-D. By connecting the radio's power leads directly to the battery and by installing coaxial capacitors in line with the alternator leads
+C. By installing a high-pass filter in series with the radio`s power lead and a low-pass filter in parallel with the field lead
+D. By connecting the radio`s power leads directly to the battery and by installing coaxial capacitors in line with the alternator leads
 
 ~~~
 E4E05 (B)
@@ -3590,7 +3588,7 @@ D. It produces a logic "1" at its output only when none of its inputs are logic 
 E7A11 (C)
 What is a truth table? 
 A. A table of logic symbols that indicate the high logic states of an op-amp
-B. A diagram showing logic states when the digital device's output is true
+B. A diagram showing logic states when the digital device`s output is true
 C. A list of inputs and corresponding outputs for a digital device
 D. A table of logic symbols that indicates the low logic states of an op-amp
 
@@ -3777,7 +3775,7 @@ E7C Filters and matching networks: filters and impedance matching networks: type
 
 ~~~
 E7C01 (D)
-How are the capacitors and inductors of a low-pass filter Pi-network arranged between the network's input and output? 
+How are the capacitors and inductors of a low-pass filter Pi-network arranged between the network`s input and output? 
 A. Two inductors are in series between the input and output and a capacitor is connected between the two inductors and ground
 B. Two capacitors are in series between the input and output and an inductor is connected between the two capacitors and ground
 C. An inductor is in parallel with the input, another inductor is in parallel with the output, and a capacitor is in series between the two
@@ -4196,7 +4194,7 @@ D. A 100 kHz oscillator and a phase detector
 E7F06 (D) 
 Which of these choices best describes a crystal marker generator?
 A. A low-stability oscillator that sweeps through a band of frequencies
-B. An oscillator often used in aircraft to determine the craft's location relative to the inner and outer markers at airports
+B. An oscillator often used in aircraft to determine the craft`s location relative to the inner and outer markers at airports
 C. A crystal-controlled oscillator with an output frequency and amplitude that can be varied over a wide range
 D. A crystal-controlled oscillator that generates a series of reference signals at known frequency intervals
 
@@ -4213,7 +4211,7 @@ E7F08 (C)
 What is one purpose of a marker generator?
 A. To add audio markers to an oscilloscope
 B. To provide a frequency reference for a phase locked loop
-C. To provide a means of calibrating a receiver's frequency settings
+C. To provide a means of calibrating a receiver`s frequency settings
 D. To add time signals to a transmitted signal
 
 ~~~
@@ -4264,8 +4262,8 @@ E7G01 (B)
 What determines the gain and frequency characteristics of an op-amp RC active filter?
 A. The values of capacitors and resistors built into the op-amp
 B. The values of capacitors and resistors external to the op-amp
-C. The input voltage and frequency of the op-amp's DC power supply
-D. The output voltage and smoothness of the op-amp's DC power supply
+C. The input voltage and frequency of the op-amp`s DC power supply
+D. The output voltage and smoothness of the op-amp`s DC power supply
 
 ~~~
 E7G02 (C) 
@@ -4601,7 +4599,7 @@ D. The AC voltage found by taking the square root of the average AC value
 E8A05 (D) 
 What would be the most accurate way of measuring the RMS voltage of a complex waveform?
 A. By using a grid dip meter
-B. By measuring the voltage with a D'Arsonval meter
+B. By measuring the voltage with a D`Arsonval meter
 C. By using an absorption wavemeter
 D. By measuring the heating effect in a known resistor
 
@@ -4737,7 +4735,7 @@ D. 47
 
 ~~~
 E8B07 (A) 
-When using a pulse-width modulation system, why is the transmitter's peak power greater than its average power?
+When using a pulse-width modulation system, why is the transmitter`s peak power greater than its average power?
 A. The signal duty cycle is less than 100%
 B. The signal reaches peak amplitude only when voice modulated
 C. The signal reaches peak amplitude only when voltage spikes are generated within the modulator
@@ -4818,8 +4816,6 @@ B. It contains fewer information bits per character than any other code
 C. It is possible to transmit both upper and lower case text
 D. It uses one character as a shift code to send numeric and special characters
 
-~~~
-***** E8C04  This question has been removed by the QPC
 
 ~~~
 E8C05 (C) 
@@ -5445,8 +5441,6 @@ B. The radiation resistance of the antenna and matching network
 C. The SWR on the transmission line
 D. The transmitter output power
 
-~~~
-***** E9C16 This question has been removed by the QPC
 
 ~~~
 E9C17 (C)
@@ -5565,7 +5559,7 @@ D. The resistance increases and the capacitive reactance increases
 
 ~~~
 E9D14(B) 
-Which of the following types of conductor would be best for minimizing losses in a station's RF ground system?
+Which of the following types of conductor would be best for minimizing losses in a station`s RF ground system?
 A. A resistive wire, such as a spark-plug wire
 B. A thin, flat copper strap several inches wide
 C. A cable with 6 or 7 18-gauge conductors in parallel

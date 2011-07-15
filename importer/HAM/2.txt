@@ -47,8 +47,8 @@ T1A05 (D) [97.3(a)(40)]
 What is the FCC Part 97 definition of a space station?
 A. Any multi-stage satellite
 B. An Earth satellite that carries one of more amateur operators 
-C. An amateur station located less than 25 km above the Earth's surface
-D. An amateur station located more than 50 km above the Earth's surface
+C. An amateur station located less than 25 km above the Earth`s surface
+D. An amateur station located more than 50 km above the Earth`s surface
 
 
 
@@ -671,10 +671,10 @@ D. Plus 600 kHz
 
 ~~~
 T2A04 (B)
-What is an appropriate way to call another station on a repeater if you know the other station's call sign?
-A. Say "break, break" then say the station's call sign
-B. Say the station's call sign then identify with your call sign
-C. Say "CQ" three times then the other station's call sign
+What is an appropriate way to call another station on a repeater if you know the other station`s call sign?
+A. Say "break, break" then say the station`s call sign
+B. Say the station`s call sign then identify with your call sign
+C. Say "CQ" three times then the other station`s call sign
 D. Wait for the station to call "CQ" then answer it
 
 
@@ -905,7 +905,7 @@ D. Play a pre-recorded emergency alert tone followed by your call sign
 T2C07 (C)
 What should you do to minimize disruptions to an emergency traffic net once you have checked in?
 A. Whenever the net frequency is quiet, announce your call sign and location
-B. Move 5 kHz away from the net's frequency and use high power to ask other hams to keep clear of the net frequency
+B. Move 5 kHz away from the net`s frequency and use high power to ask other hams to keep clear of the net frequency
 C. Do not transmit on the net frequency until asked to do so by the net control station
 D. Wait until the net frequency is quiet, then ask for any emergency traffic for your area 
 
@@ -1249,7 +1249,7 @@ What is the radio horizon?
 A. The distance at which radio signals between two points are effectively blocked by the curvature of the Earth
 B. The distance from the ground to a horizontally mounted antenna
 C. The farthest point you can see when standing at the base of your antenna tower
-D. The shortest distance between two points on the Earth's surface
+D. The shortest distance between two points on the Earth`s surface
 
 
 ~~~
@@ -2110,7 +2110,7 @@ D. Bridge rectifier
 
 ~~~
 T6B12 (A)
-What is the term that describes a transistor's ability to amplify a signal?
+What is the term that describes a transistor`s ability to amplify a signal?
 A. Gain
 B. Forward resistance
 C. Forward voltage drop
@@ -2462,9 +2462,9 @@ D. Noise floor
 T7A13 (A)
 Where is an RF preamplifier installed?
 A. Between the antenna and receiver
-B. At the output of the transmitter's power amplifier
+B. At the output of the transmitter`s power amplifier
 C. Between a transmitter and antenna tuner
-D. At the receiver's audio output
+D. At the receiver`s audio output
 
 
 ~~
@@ -2928,7 +2928,7 @@ T8B04 (B)
 Which amateur stations may make contact with an amateur station on the International Space Station using 2 meter and 70 cm band amateur radio frequencies?
 A. Only members of amateur radio clubs at NASA facilities
 B. Any amateur holding a Technician or higher class license
-C. Only the astronaut's family members who are hams
+C. Only the astronaut`s family members who are hams
 D. You cannot talk to the ISS on amateur radio frequencies
 
 
@@ -3228,7 +3228,7 @@ D. The phase is reversed
 
 ~~~
 T9A03 (B)
-Which of the following describes a simple dipole mounted so the conductor is parallel to the Earth's surface?
+Which of the following describes a simple dipole mounted so the conductor is parallel to the Earth`s surface?
 A. A ground wave antenna
 B. A horizontally polarized antenna
 C. A rhombic antenna
@@ -3342,7 +3342,7 @@ D. It is less expensive than any other types of feedline
 ~~~
 T9B04 (A)
 What does an antenna tuner do?
-A. It matches the antenna system impedance to the transceiver's output impedance
+A. It matches the antenna system impedance to the transceiver`s output impedance
 B. It helps a receiver automatically tune in weak stations
 C. It allows an antenna to be used on both transmit and receive
 D. It automatically selects the proper antenna for the frequency band being used
@@ -3486,7 +3486,7 @@ T0A08 (C)
 What is one way to recharge a 12-volt lead-acid station battery if the commercial power is out?
 A. Cool the battery in ice for several hours
 B. Add acid to the battery
-C. Connect the battery to a car's battery and run the engine
+C. Connect the battery to a car`s battery and run the engine
 D. All of these choices are correct
 
 
@@ -3637,7 +3637,7 @@ Which of the following establishes grounding requirements for an amateur radio t
 A. FCC Part 97 Rules
 B. Local electrical codes
 C. FAA tower lighting regulations
-D. Underwriters Laboratories' recommended practices
+D. Underwriters Laboratories` recommended practices
 
 
 ~~

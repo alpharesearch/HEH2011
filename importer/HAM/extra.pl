@@ -28,11 +28,13 @@
  #
 use strict;
 open PINPUT,"<Element 4 Pool.txt";
-open POUTPUT,">Element 4 Pool_C.txt";
+open POUTPUT,">4.txt";
 while(<PINPUT>)
 	{
+		s/'/`/;
+		s/'/`/;
 		chomp;
-		if (/~~/){print 'skip';}
+		if (/~~|\*\*\*\*\*/){print 'skip';}
 		else{
 			if (/(((E)\d[A-Z]\d))/) {
 			print POUTPUT "~~~\n$`$&$'\n";

@@ -1,7 +1,7 @@
 General Class Question Pool Effective July 1, 2011 - June 30, 2015
 
 ~
-SUBELEMENT G1 - COMMISSION'S RULES [5 Exam Questions - 5 Groups]
+SUBELEMENT G1 - COMMISSION`S RULES [5 Exam Questions - 5 Groups]
 
 ~~
 G1A - General Class control operator frequency privileges; primary and secondary allocations
@@ -137,8 +137,8 @@ D. Amateur stations may only operate during specific hours of the day, while pri
 ~~~
 G1A15 (D) [97.303]
 What is the appropriate action if, when operating on either the 30 or 60 meter bands, a station in the primary service interferes with your contact? 
-A. Notify the FCC's regional Engineer in Charge of the interference 
-B. Increase your transmitter's power to overcome the interference 
+A. Notify the FCC`s regional Engineer in Charge of the interference 
+B. Increase your transmitter`s power to overcome the interference 
 C. Attempt to contact the station and request that it stop the interference 
 D. Move to a clear frequency
 
@@ -945,7 +945,7 @@ D. You must keep a log of the manufacturer of your equipment and the antenna use
 
 ~~~
 G2D08 (D) 
-Why do many amateurs keep a log even though the FCC doesn't require it?
+Why do many amateurs keep a log even though the FCC doesn`t require it?
 A. The ITU requires a log of all international contacts
 B. The ITU requires a log of all international third party traffic
 C. The log provides evidence of operation needed to renew a license without retest 
@@ -1163,7 +1163,7 @@ What is a geomagnetic storm?
 A. A sudden drop in the solar-flux index
 B. A thunderstorm which affects radio propagation
 C. Ripples in the ionosphere
-D. A temporary disturbance in the Earth's magnetosphere
+D. A temporary disturbance in the Earth`s magnetosphere
 
 
 ~~~
@@ -1216,7 +1216,7 @@ G3A12 (B)
 What does the K-index indicate?
 A. The relative position of sunspots on the surface of the Sun
 B. The short term stability of the Earth’s magnetic field
-C. The stability of the Sun's magnetic field
+C. The stability of the Sun`s magnetic field
 D. The solar radio flux at Boulder, Colorado
 
 
@@ -1224,7 +1224,7 @@ D. The solar radio flux at Boulder, Colorado
 G3A13 (C) 
 What does the A-index indicate? 
 A. The relative position of sunspots on the surface of the Sun 
-B. The amount of polarization of the Sun's electric field
+B. The amount of polarization of the Sun`s electric field
 C. The long term stability of the Earth’s geomagnetic field
 D. The solar radio flux at Boulder, Colorado
 
@@ -1336,7 +1336,7 @@ D. The Maximum Usable Frequency during a 24 hour period
 
 ~~~
 G3B09 (C)
-What is the approximate maximum distance along the Earth's surface that is normally covered in one hop using the F2 region?
+What is the approximate maximum distance along the Earth`s surface that is normally covered in one hop using the F2 region?
 A. 180 miles
 B. 1,200 miles
 C. 2,500 miles
@@ -1345,7 +1345,7 @@ D. 12,000 miles
 
 ~~~
 G3B10 (B)
-What is the approximate maximum distance along the Earth's surface that is normally covered in one hop using the E region?
+What is the approximate maximum distance along the Earth`s surface that is normally covered in one hop using the E region?
 A. 180 miles 
 B. 1,200 miles 
 C. 2,500 miles 
@@ -1798,7 +1798,7 @@ D. Reverse-biased diode
 G4C02 (C) 
 Which of the following could be a cause of interference covering a wide range of frequencies? 
 A. Not using a balun or line isolator to feed balanced antennas 
-B. Lack of rectification of the transmitter's signal in power conductors 
+B. Lack of rectification of the transmitter`s signal in power conductors 
 C. Arcing at a poor electrical connection 
 D. The use of horizontal rather than vertical antennas 
 
@@ -1870,7 +1870,7 @@ D. Connect all ground conductors to a single point
 ~~~
 G4C10 (A) 
 What could be a symptom of a ground loop somewhere in your station?
-A. You receive reports of "hum" on your station's transmitted signal
+A. You receive reports of "hum" on your station`s transmitted signal
 B. The SWR reading for one or more antennas is suddenly very high
 C. An item of station equipment starts to draw excessive amounts of current
 D. You receive reports of harmonic interference from your station
@@ -2039,9 +2039,9 @@ D. To the alternator or generator using resistor wire
 
 ~~~
 G4E04 (B) 
-Why is it best NOT to draw the DC power for a 100-watt HF transceiver from an automobile's auxiliary power socket?
+Why is it best NOT to draw the DC power for a 100-watt HF transceiver from an automobile`s auxiliary power socket?
 A. The socket is not wired with an RF-shielded power cable
-B. The socket's wiring may be inadequate for the current being drawn by the
+B. The socket`s wiring may be inadequate for the current being drawn by the
 transceiver
 C. The DC polarity of the socket is reversed from the polarity of modern HF
 transceivers
@@ -2565,17 +2565,17 @@ G6A06 (C)
 What will happen to the resistance if the temperature of a resistor is increased?
 A. It will change depending on the resistor’s reactance coefficient
 B. It will stay the same
-C. It will change depending on the resistor's temperature coefficient
+C. It will change depending on the resistor`s temperature coefficient
 D. It will become time dependent
 
 
 ~~~
 G6A07 (B) 
 Which of the following is a reason not to use wire-wound resistors in an RF circuit?
-A. The resistor's tolerance value would not be adequate for such a circuit
-B. The resistor's inductance could make circuit performance unpredictable
+A. The resistor`s tolerance value would not be adequate for such a circuit
+B. The resistor`s inductance could make circuit performance unpredictable
 C. The resistor could overheat
-D. The resistor's internal capacitance would detune the circuit
+D. The resistor`s internal capacitance would detune the circuit
 
 
 
@@ -2669,7 +2669,7 @@ G6B04 (C)
 When two or more diodes are connected in parallel to increase current handling capacity, what is the purpose of the resistor connected in series with each diode?
 A. To ensure the thermal stability of the power supply
 B. To regulate the power supply output voltage
-C. To ensure that one diode doesn't carry most of the current
+C. To ensure that one diode doesn`t carry most of the current
 D. To act as an inductor
 
 
@@ -3392,9 +3392,9 @@ D. Attenuator level
 G8A10 (C)
 What is meant by flat-topping of a single-sideband phone transmission?
 A. Signal distortion caused by insufficient collector current
-B. The transmitter's automatic level control is properly adjusted
+B. The transmitter`s automatic level control is properly adjusted
 C. Signal distortion caused by excessive drive
-D. The transmitter's carrier is properly suppressed
+D. The transmitter`s carrier is properly suppressed
 
 ~~~
 G8A11 (A)
@@ -3457,7 +3457,7 @@ D. Multiplier
 
 ~~~
 G8B05 (C)
-Why isn't frequency modulated (FM) phone used below 29.5 MHz?
+Why isn`t frequency modulated (FM) phone used below 29.5 MHz?
 A. The transmitter efficiency for this mode is low
 B. Harmonics could not be attenuated to practical levels
 C. The wide bandwidth is prohibited by FCC rules
@@ -3488,7 +3488,7 @@ D. 60 kHz
 G8B08 (B)
 Why is it important to know the duty cycle of the data mode you are using when transmitting?
 A. To aid in tuning your transmitter
-B. Some modes have high duty cycles which could exceed the transmitter's average power rating.
+B. Some modes have high duty cycles which could exceed the transmitter`s average power rating.
 C. To allow time for the other station to break in during a transmission
 D. All of these choices are correct
 

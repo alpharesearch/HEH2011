@@ -19,3 +19,17 @@ CREATE TABLE ham(
     "teaching" TEXT,
     "teaching_illustration" BLOB
 )
+
+
+CREATE TABLE examquestions(
+    "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "removed" INTEGER
+    "el_num" TEXT,
+    "FCC" TEXT,
+    "stem" TEXT,
+    "key" TEXT,
+    "distractor1" TEXT,
+    "distractor2" TEXT,
+    "distractor3" TEXT,
+    "illustration" BLOB,
+)
