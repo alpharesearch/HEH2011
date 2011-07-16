@@ -45,8 +45,15 @@ public void prep_questions () {
 
 public void next_question () {
         cols2++;
-        if(OK) statusbar1.push(0,@"Good Job! Question $cols2 of 456");
-        else statusbar1.push(0,@"Wrong! Question $cols2 of 456");
+        var labe14 = builder.get_object ("label4") as Label;
+	    if(OK) {
+        	statusbar1.push(0,@"Good Job! Question $cols2 of 456");
+        	labe14.label = "You got it!";
+        }
+        else{ 
+        	statusbar1.push(0,@"Wrong! Question $cols2 of 456");
+        	labe14.label = "Nice try, here is the right answer!";
+        }
         rc = stmt.step();
         switch (rc) {
         case Sqlite.DONE:
