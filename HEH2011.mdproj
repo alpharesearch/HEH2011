@@ -15,6 +15,9 @@
         <ProjectPackage file="/usr/share/vala/vapi/glib-2.0.vapi" name="glib-2.0" IsProject="false" />
         <ProjectPackage file="/usr/share/vala/vapi/gtk+-2.0.vapi" name="gtk+-2.0" IsProject="false" />
         <ProjectPackage file="/usr/share/vala/vapi/gmodule-2.0.vapi" name="gmodule-2.0" IsProject="false" />
+        <ProjectPackage file="/usr/share/vala/vapi/sqlite3.vapi" name="sqlite3" IsProject="false" />
+        <ProjectPackage file="/usr/share/vala/vapi/gdk-pixbuf-2.0.vapi" name="gdk-pixbuf-2.0" IsProject="false" />
+        <ProjectPackage file="/usr/share/vala/vapi/gdk-2.0.vapi" name="gdk-2.0" IsProject="false" />
       </Packages>
     </Packages>
   </PropertyGroup>
@@ -51,6 +54,9 @@
   <ItemGroup>
     <None Include="src\sample.ui">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="src\hamdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>
