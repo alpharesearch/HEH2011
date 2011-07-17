@@ -18,6 +18,7 @@
         <ProjectPackage file="/usr/share/vala/vapi/sqlite3.vapi" name="sqlite3" IsProject="false" />
         <ProjectPackage file="/usr/share/vala/vapi/gdk-pixbuf-2.0.vapi" name="gdk-pixbuf-2.0" IsProject="false" />
         <ProjectPackage file="/usr/share/vala/vapi/gdk-2.0.vapi" name="gdk-2.0" IsProject="false" />
+        <ProjectPackage file="/usr/share/vala/vapi/gee-1.0.vapi" name="gee-1.0" IsProject="false" />
       </Packages>
     </Packages>
   </PropertyGroup>

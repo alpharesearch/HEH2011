@@ -2,6 +2,7 @@ using Gtk;
 using Gdk;
 using GLib;
 using Sqlite;
+using Gee;
 
 Builder builder;
 Statusbar statusbar1;
@@ -15,6 +16,9 @@ string kg;
 bool OK;
 int Q_ID;
 int answerg;
+ArrayList<int> listg;
+int listg_index;
+int listg_length;
 
 public void on_button1_clicked (Button source) {
 	check_answer(1);
@@ -36,28 +40,25 @@ public void on_button4_clicked (Button source) {
     next_question ();
 }
 
-public void check_answer (int myanswer) {
-	if (answerg == myanswer) OK=true;
-	else OK=false;
+public int[] get_stats(int ID){
 	string a="0",b="0",c="0";
-	string buff = """SELECT * FROM "main"."stats" WHERE question LIKE """ + @"$Q_ID";
-	printerr ("%s\n",buff);
+	string buff = """SELECT * FROM "main"."stats" WHERE question LIKE """ + @"$ID";
 	rc = db.exec(buff, (n_columns, values, column_names) => {
     	a = values[1];
     	b = values[2];
     	c = values[3];
         return 0;
     }, null);
-    int ai,bi,ci;
-    ai = a.to_int();
-    bi = b.to_int();
-    ci = c.to_int();
-    stderr.printf ("%i, %i, %i\n", ai, bi, ci);
-    ai++;
-    if(OK) bi++;
-    else bi--;
-    if(ai>=3 && bi>2)ci++;
-    string dbstr = """INSERT OR REPLACE INTO stats ("question","tries","failed","learnd") VALUES (""" + @"$Q_ID, $ai, $bi, $ci" +""")""";
+    int[] rbuff = new int[3];
+    rbuff[0] = int.parse(a);
+    rbuff[1] = int.parse(b);
+    rbuff[2] = int.parse(c);
+    return rbuff;
+}
+
+public void set_stats(int ID, int[] stats){
+    int a=stats[0],b=stats[1],c=stats[2];
+    string dbstr = """INSERT OR REPLACE INTO stats ("question","tries","failed","learnd") VALUES (""" + @"$ID, $a, $b, $c" +""")""";
 	rc = db.exec(dbstr, (n_columns, values, column_names) => {
 	for (int i = 0; i < n_columns; i++) {
 			stdout.printf ("%s = %s\n", column_names[i], values[i]);
@@ -66,37 +67,73 @@ public void check_answer (int myanswer) {
 
 		return 0;
 	}, null);
-
 	if (rc != Sqlite.OK) { 
 		stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
 		stderr.printf(dbstr + "\n");
 	}
+}
+
+public void check_answer (int myanswer) {
+	if (answerg == myanswer) OK=true;
+	else OK=false;
+   
+    int[3] stats = get_stats(Q_ID);
+    stats[0]++;
+    if(OK) stats[1]++;
+    else stats[1]--;
+    if(stats[0]>=3 && stats[1]>2)stats[2]++;
+    set_stats(Q_ID, stats);
+    
 	cols2++;
     var labe14 = builder.get_object ("label4") as Label;
 	if(OK) {
-        statusbar1.push(0,@"Good Job! Question $cols2 of 456");
+        statusbar1.push(0,@"Good Job! Question $cols2 of $cols");
         labe14.label = "You got it!";
     }
     else{ 
-        statusbar1.push(0,@"Wrong! Question $cols2 of 456");
+        statusbar1.push(0,@"Wrong! Question $cols2 of $cols");
         labe14.label = "Nice try, here is the right answer!";
     }
 }
 
-public void prep_questions () {
-	string buff = """SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%"""";    
+public void next_question () {
+	if(listg_index==-1 || listg_index>=listg_length) select_questions ();
+	cont_next_question(listg[listg_index++]);
+}
+
+public string select_questions () {
+	listg_index=0;
+	listg_length=0;
+	listg = new ArrayList<int>();
+	listg.add(500);
+	listg_length++;
+	listg.add(100);
+	listg_length++;
+	listg.add(1000);
+	listg_length++;
+	
+	int[3] stats = get_stats(Q_ID);
+	string selected_questions = """SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G1%"""";
+	//get list of IDs from slected questions
+	//create smaller list of questions from selected questoins list and get_stats; 
+	//remove learnd questions 
+	//put questions with less tries to the front 
+	//sprinkel wrong aswerd questions after 3 new learnd for example
+	string buff2 = """SELECT * FROM "main"."examquestions" WHERE  ID LIKE """ + @"";
+	string rbuff = """SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%"""";
+	return rbuff;
+}
+
+public void cont_next_question (int ID) {
+    string buff = """SELECT * FROM "main"."examquestions" WHERE  ID LIKE """ + @"$ID";
 	if ((rc = db.prepare_v2 (buff, -1, out stmt, null)) == 1) {
         printerr ("SQL error: %d, %s\n", rc, db.errmsg ());
         return;
     }
-
-    cols = stmt.column_count();
+    cols = stmt.data_count();
 	cols2 = 0;
-}
-
-public void next_question () {
-        rc = stmt.step();
-        switch (rc) {
+     rc = stmt.step();
+     switch (rc) {
         case Sqlite.DONE:
             break;
         case Sqlite.ROW:
@@ -107,8 +144,10 @@ public void next_question () {
 	            unowned uint8[] data = (uint8[]) stmt.column_blob(9);
 				data.length = stmt.column_bytes(9);
 				var data2 = data;
-				FileUtils.set_data("temp.jpg", data2);
-	            Pixbuf pixbuf = new Pixbuf.from_file_at_scale("temp.jpg",320,240,true);
+				//FileUtils.set_data("temp.jpg", data2);
+	            //Pixbuf pixbuf = new Pixbuf.from_file_at_scale("temp.jpg",320,240,true);
+	            var imgstream = new GLib.MemoryInputStream.from_data(data2, null);
+                Pixbuf pixbuf = new Gdk.Pixbuf.from_stream(imgstream,null);
 	            var image1 = builder.get_object ("image1") as Gtk.Image;
 	            image1.set_from_pixbuf(pixbuf);
             }
@@ -132,7 +171,6 @@ public void set_text (string el, string q, string k, string d1, string d2, strin
 	var image1 = builder.get_object ("image1") as Gtk.Image;
 	image1.set_from_stock("", IconSize.BUTTON);
 	labe11.label = q;
-	
 	switch (Random.int_range (1, 17)) {
 	case 1:
 		button1.label = "A. "+k;
@@ -259,6 +297,8 @@ int main (string[] args) {
     Gtk.init (ref args);
     qg="";
     kg="";
+    Q_ID=0;
+    listg_index=-1;
 	rc = Database.open ("src/hamdb", out db);
 	if (rc != Sqlite.OK) {
     	stderr.printf ("Can't open database: %d, %s\n", rc, db.errmsg ());
@@ -272,7 +312,6 @@ int main (string[] args) {
         statusbar1 = builder.get_object ("statusbar1") as Statusbar;
         window.show_all ();
         statusbar1.push(0,"Loading DB... Done");
-        prep_questions ();
         next_question ();
         Gtk.main ();
         
