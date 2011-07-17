@@ -44,6 +44,13 @@ public class SqliteSample : GLib.Object {
 "illustration" BLOB
 )""";
 
+		string stats = """CREATE TABLE "stats" (
+    "question" INTEGER PRIMARY KEY,
+    "tries" INTEGER,
+    "failed" INTEGER,
+    "learnd" INTEGER
+)""";
+
 		string viewt ="""CREATE VIEW "T" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "T%"""";
 		string viewg ="""CREATE VIEW "G" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%"""";
 		string viewe ="""CREATE VIEW "E" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "E%"""";
@@ -57,6 +64,9 @@ public class SqliteSample : GLib.Object {
             }, null);*/
 
         if ((rc = db.exec (examquestions, callback, null)) != Sqlite.OK) { 
+            stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+            }
+        if ((rc = db.exec (stats, callback, null)) != Sqlite.OK) { 
             stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
             }
         if ((rc = db.exec (viewt, callback, null)) != Sqlite.OK) { 
