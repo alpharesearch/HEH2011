@@ -13,23 +13,31 @@ int cols2;
 string qg;
 string kg;
 bool OK;
+int answerg;
 
 public void on_button1_clicked (Button source) {
-	OK=true;
+	check_answer(1);
     next_question ();
 }
 
 public void on_button2_clicked (Button source) {
-	OK=false;
+	check_answer(2);
     next_question ();
 }
 
 public void on_button3_clicked (Button source) {
+    check_answer(3);
     next_question ();
 }
 
 public void on_button4_clicked (Button source) {
+    check_answer(4);
     next_question ();
+}
+
+public void check_answer (int myanswer) {
+	if (answerg == myanswer) OK=true;
+	else OK=false;
 }
 
 public void prep_questions () {
@@ -63,13 +71,10 @@ public void next_question () {
             set_text(stmt.column_text(4),stmt.column_text(5),stmt.column_text(6),stmt.column_text(7),stmt.column_text(8));
             if (stmt.column_blob(9) != null)
             {
-	            {
-	            	unowned uint8[] data = (uint8[]) stmt.column_blob(9);
-					data.length = stmt.column_bytes(9);
-					var data2 = data;
-					FileUtils.set_data("temp.jpg", data2);
-	            	
-            	}
+	            unowned uint8[] data = (uint8[]) stmt.column_blob(9);
+				data.length = stmt.column_bytes(9);
+				var data2 = data;
+				FileUtils.set_data("temp.jpg", data2);
 	            Pixbuf pixbuf = new Pixbuf.from_file_at_scale("temp.jpg",320,240,true);
 	            var image1 = builder.get_object ("image1") as Gtk.Image;
 	            image1.set_from_pixbuf(pixbuf);
@@ -93,10 +98,38 @@ public void set_text (string q, string k, string d1, string d2, string d3) {
 	var image1 = builder.get_object ("image1") as Gtk.Image;
 	image1.set_from_stock("", IconSize.BUTTON);
 	labe11.label = q;
-	button1.label = k;
-	button2.label = d1;
-	button3.label = d2;
-	button4.label = d3;
+	
+	switch (Random.int_range (1, 5)) {
+	case 1:
+		button1.label = k;
+		button2.label = d1;
+		button3.label = d2;
+		button4.label = d3;
+		answerg = 1;
+		break;
+	case 2:
+		button1.label = d1;
+		button2.label = k;
+		button3.label = d2;
+		button4.label = d3;
+		answerg = 2;
+		break;
+	case 3:
+		button1.label = d1;
+		button2.label = d2;
+		button3.label = k;
+		button4.label = d3;
+		answerg = 3;
+		break;
+	case 4:
+		button1.label = d1;
+		button2.label = d2;
+		button3.label = d3;
+		button4.label = k;
+		answerg = 4;
+		break;
+	}
+	
 	labe12.label = qg;
 	labe13.label = kg;
 	qg=q;
