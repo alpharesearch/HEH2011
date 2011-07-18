@@ -45,7 +45,7 @@ public class SqliteSample : GLib.Object {
 )""";
 
 		string stats = """CREATE TABLE "stats" (
-    "question" INTEGER PRIMARY KEY,
+    "ID" INTEGER PRIMARY KEY,
     "tries" INTEGER,
     "failed" INTEGER,
     "learnd" INTEGER
@@ -159,6 +159,21 @@ int counter=0;
 					stderr.printf(dbstr + "\n");
 				}
 			}
+			
+			string dbstr = """INSERT INTO "stats" ("tries","failed","learnd") VALUES (0,0,0)""";
+				rc = db.exec(dbstr, (n_columns, values, column_names) => {
+				for (int i = 0; i < n_columns; i++) {
+					stdout.printf ("%s = %s\n", column_names[i], values[i]);
+				}
+				stdout.printf ("\n");
+
+				return 0;
+				}, null);
+
+				if (rc != Sqlite.OK) { 
+					stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+					stderr.printf(dbstr + "\n");
+				}
 			
 			}
         }

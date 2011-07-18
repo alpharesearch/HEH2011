@@ -857,24 +857,6 @@ D. FEMA Rules
 
 
 ~~~
-Deleted T2C02 (D) [97.113 and FCC Public Notice DA 09-2259]
-Who must submit the request for a temporary waiver of Part 97.113 to allow amateur radio operators to provide communications on behalf of their employers during a government sponsored disaster drill?
-A. Each amateur participating in the drill
-B. Any employer participating in the drill
-C. The local American Red Cross Chapter
-D. The government agency sponsoring the event
-
-
-~~~
-Deleted T2C03 (C) [97.113]
-When is it legal for an amateur licensee to provide communications on behalf of their employer during a government sponsored disaster drill or exercise?
-A. Whenever the employer is a not-for-profit organization
-B. Whenever there is a temporary need for the employer’s business continuity plan
-C. Only when the FCC has granted a government-requested waiver
-D. Only when the amateur is not receiving compensation from his employer for the activity
-
-
-~~~
 T2C04 (D)
 What do RACES and ARES have in common?
 A. They represent the two largest ham clubs in the United States
@@ -6812,7 +6794,7 @@ D. A steady DC voltage
 
 
 ~~~
-G7A08(C) 
+G7A08 (C) 
 Which of the following is an advantage of a switch-mode power supply as compared to a linear power supply?
 A. Faster switching time makes higher output voltage possible
 B. Fewer circuit components are required
@@ -10481,7 +10463,7 @@ D. 63.2 kHz
 E5B Time constants and phase relationships: R/L/C time constants: definition; time constants in RL and RC circuits; phase angle between voltage and current; phase angles of series and parallel circuits
 
 ~~~
-E5B01(B) 
+E5B01 (B) 
 What is the term for the time required for the capacitor in an RC circuit to be charged to 63.2% of the supply voltage?
 A. An exponential rate of one
 B. One time constant
@@ -12607,7 +12589,7 @@ C. Armstrong and deForest
 D. Negative feedback and Balanced feedback
 
 ~~~
-E7H07(C) 
+E7H07 (C) 
 What is a magnetron oscillator?
 A. An oscillator in which the output is fed back to the input by the magnetic field of a transformer
 B. An crystal oscillator in which variable frequency is obtained by placing the crystal in a strong magnetic field
@@ -13324,7 +13306,7 @@ C. By shortening the vertical
 D. By reducing the diameter of the radiating element
 
 ~~~
-E9A13(C) 
+E9A13 (C) 
 Which is the most important factor that determines ground losses for a ground-mounted vertical antenna operating in the 3-30 MHz range?
 A. The standing-wave ratio
 B. Base current
@@ -13718,7 +13700,7 @@ C. The resistance increases and the capacitive reactance decreases
 D. The resistance increases and the capacitive reactance increases
 
 ~~~
-E9D14(B) 
+E9D14 (B) 
 Which of the following types of conductor would be best for minimizing losses in a station`s RF ground system?
 A. A resistive wire, such as a spark-plug wire
 B. A thin, flat copper strap several inches wide
