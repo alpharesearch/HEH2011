@@ -8,17 +8,16 @@ Builder builder;
 Statusbar statusbar1;
 Database db;
 Statement stmt;
-int rc; 
 int cols;
 int cols2;
 string qg;
 string kg;
 bool OK;
 int Q_ID;
+string selected_questions;
 int answerg;
 ArrayList<int> listg;
 int listg_index;
-int listg_length;
 
 public void on_button1_clicked (Button source) {
 	check_answer(1);
@@ -41,6 +40,7 @@ public void on_button4_clicked (Button source) {
 }
 
 public int[] get_stats(int ID){
+	int rc; 
 	string a="0",b="0",c="0";
 	string buff = """SELECT * FROM "main"."stats" WHERE question LIKE """ + @"$ID";
 	rc = db.exec(buff, (n_columns, values, column_names) => {
@@ -57,6 +57,7 @@ public int[] get_stats(int ID){
 }
 
 public void set_stats(int ID, int[] stats){
+	int rc; 
     int a=stats[0],b=stats[1],c=stats[2];
     string dbstr = """INSERT OR REPLACE INTO stats ("question","tries","failed","learnd") VALUES (""" + @"$ID, $a, $b, $c" +""")""";
 	rc = db.exec(dbstr, (n_columns, values, column_names) => {
@@ -76,7 +77,6 @@ public void set_stats(int ID, int[] stats){
 public void check_answer (int myanswer) {
 	if (answerg == myanswer) OK=true;
 	else OK=false;
-   
     int[3] stats = get_stats(Q_ID);
     stats[0]++;
     if(OK) stats[1]++;
@@ -97,34 +97,73 @@ public void check_answer (int myanswer) {
 }
 
 public void next_question () {
-	if(listg_index==-1 || listg_index>=listg_length) select_questions ();
+	if(listg_index==-1 || listg_index>=listg.size) select_questions ();
 	cont_next_question(listg[listg_index++]);
 }
 
-public string select_questions () {
-	listg_index=0;
-	listg_length=0;
-	listg = new ArrayList<int>();
-	listg.add(500);
-	listg_length++;
-	listg.add(100);
-	listg_length++;
-	listg.add(1000);
-	listg_length++;
-	
-	int[3] stats = get_stats(Q_ID);
-	string selected_questions = """SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G1%"""";
+public void select_questions () {
 	//get list of IDs from slected questions
-	//create smaller list of questions from selected questoins list and get_stats; 
-	//remove learnd questions 
+	put_all_questions_in_list();
+	//create smaller list (or sort and remove) of questions from selected questoins list and get_stats; 
+	//remove learnd questions
+	for(int i=(listg.size-1); i!=-1;i--) {
+        int[3] stats = get_stats(listg[i]);
+        printerr ("i:%i stats:%i, ID:%i\n", i, stats[2], listg[i]);
+        if(stats[2]>=1){
+	       listg.remove_at(i);
+	       printerr ("Remove: ");
+        }
+    }
+	//sort so that if multible lessions are selected it goes changes... 
+	sort_questions_list ();
+	
 	//put questions with less tries to the front 
 	//sprinkel wrong aswerd questions after 3 new learnd for example
-	string buff2 = """SELECT * FROM "main"."examquestions" WHERE  ID LIKE """ + @"";
-	string rbuff = """SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G%"""";
-	return rbuff;
+	//short the list
+}
+
+public void sort_questions_list () {
+
+}
+
+public string get_elnum(int ID){
+	int rc;
+	string retbuff=""; 
+	string buff = """SELECT * FROM "main"."examquestions" WHERE ID LIKE """ + @"$ID";
+	rc = db.exec(buff, (n_columns, values, column_names) => {
+    	retbuff = values[2];
+        return 0;
+    }, null);
+    return retbuff;
+}
+
+public void put_all_questions_in_list () {
+	int rc; 
+	listg_index=0;
+	listg = new ArrayList<int>();
+
+	Statement stmt2;
+	if ((rc = db.prepare_v2 (selected_questions, -1, out stmt2, null)) == 1) {
+        printerr ("SQL error: %d, %s\n", rc, db.errmsg ());
+        return;
+    }
+    do {
+        rc = stmt2.step();
+        switch (rc) {
+        case Sqlite.DONE:
+            break;
+        case Sqlite.ROW:
+        	listg.add(stmt2.column_int(0));
+            break;
+        default:
+            printerr ("Error: %d, %s\n", rc, db.errmsg ());
+            break;
+        }
+    } while (rc == Sqlite.ROW);
 }
 
 public void cont_next_question (int ID) {
+	int rc; 
     string buff = """SELECT * FROM "main"."examquestions" WHERE  ID LIKE """ + @"$ID";
 	if ((rc = db.prepare_v2 (buff, -1, out stmt, null)) == 1) {
         printerr ("SQL error: %d, %s\n", rc, db.errmsg ());
@@ -293,12 +332,14 @@ public void set_text (string el, string q, string k, string d1, string d2, strin
 	kg=k;
 }
 
-int main (string[] args) {     
+int main (string[] args) {
+	int rc;      
     Gtk.init (ref args);
     qg="";
     kg="";
     Q_ID=0;
     listg_index=-1;
+    selected_questions = """SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "G1%"""";
 	rc = Database.open ("src/hamdb", out db);
 	if (rc != Sqlite.OK) {
     	stderr.printf ("Can't open database: %d, %s\n", rc, db.errmsg ());
