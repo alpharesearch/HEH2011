@@ -136,11 +136,11 @@ public void put_all_questions_in_list () {
 	int rc; 
 	listg_index=0;
 	listg = new ArrayList<int>();
-	ArrayList<int> list_temp = new ArrayList<int>();
-	ArrayList<int> list_failed = new ArrayList<int>();
-	ArrayList<int> list_reinforce = new ArrayList<int>();
-	ArrayList<int> list_learnd = new ArrayList<int>();
-	ArrayList<int> list_new = new ArrayList<int>();
+	ArrayList<int?> list_temp = new ArrayList<int?>();
+	ArrayList<int?> list_failed = new ArrayList<int?>();
+	ArrayList<int?> list_reinforce = new ArrayList<int?>();
+	ArrayList<int?> list_learnd = new ArrayList<int?>();
+	ArrayList<int?> list_new = new ArrayList<int?>();
 
 	Statement stmt2;
 	if ((rc = db.prepare_v2 (selected_questions, -1, out stmt2, null)) == 1) {
@@ -169,21 +169,92 @@ public void put_all_questions_in_list () {
         	 else if(stats[2] > 2) list_learnd.add(i);
         		  else list_reinforce.add(i);
     } 
+    
      int mysize = list_failed.size + list_reinforce.size +list_new.size + list_learnd.size;
      if(mysize > 15) mysize = 15;
      if(mysize < 1) listg.add(1);
+    
      //move 15 questions in the main list, sort by exam groups and add failed (6) and some reinfoce (5) and also some new questions (2) and a learnd (1) one...
 	 else {
-		 //list_failed.sort(compare);
-	     
-     }
-     
-    
-    
+    	list_failed.sort(compare_failed);	 
+		list_learnd.sort(compare_learnd);	
+		list_reinforce.sort(compare_reinforce);
+		
+		foreach ( int i in list_failed ) {
+    		if(mysize<=15&&mysize>=10) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("failed %i\n", i);
+    		}
+  		}
+  		foreach ( int i in list_reinforce ) {
+    		if(mysize<=15&&mysize>=5) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("reinforce %i\n", i);
+    		}
+  		}
+  		foreach ( int i in list_learnd ) {
+    		if(mysize<=15&&mysize>=3) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("lernd %i\n", i);
+    		}
+  		}
+  		foreach ( int i in list_new ) {
+    		if(mysize<=15&&mysize>=1) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("new %i\n", i);
+    		}
+    	}
+    	foreach ( int i in list_learnd ) {
+    		if(mysize<=15&&mysize>=1) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("lernd %i\n", i);
+    		}
+  		}
+  		foreach ( int i in list_reinforce ) {
+    		if(mysize<=15&&mysize>=1) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("reinforce %i\n", i);
+    		}
+  		}
+  		foreach ( int i in list_failed ) {
+    		if(mysize<=15&&mysize>=1) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("failed %i\n", i);
+    		}
+  		}
+  		
+    } 
 }
 
-public int compare (int? a, int? b) { 
-	return a - b; 
+public int compare_failed (int? a, int? b) { 
+	int[3] stats_a = get_stats(a);
+	int[3] stats_b = get_stats(b);
+	int x = stats_a[1];
+	int y = stats_b[1];
+	return (x < y) ? -1 : ((y < x) ? 1 : 0);
+}
+
+public int compare_learnd (int? a, int? b) { 
+	int[3] stats_a = get_stats(a);
+	int[3] stats_b = get_stats(b);
+	int x = stats_a[2];
+	int y = stats_b[2];
+	return (x < y) ? -1 : ((y < x) ? 1 : 0);
+}
+
+public int compare_reinforce (int? a, int? b) { 
+	int[3] stats_a = get_stats(a);
+	int[3] stats_b = get_stats(b);
+	int x = stats_a[2];
+	int y = stats_b[2];
+	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
 
