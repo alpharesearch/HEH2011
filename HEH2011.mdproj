@@ -51,6 +51,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="src\main.vala" />
+    <Compile Include="src\button.vala" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\sample.ui">
