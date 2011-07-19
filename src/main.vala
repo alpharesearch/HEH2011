@@ -99,23 +99,12 @@ public void select_questions () {
 
 	//sort so that if multible lessions are selected it goes changes...
 	// sort all in different list, one list for failed one for learnd one list for new  
-	sort_questions_list ();
-	
 	//put questions with less tries to the front 
 	//sprinkel wrong aswerd questions after 3 new learnd for example
 	//short the list
-	
 	//keep track of wrong answerd and put back in list
-	//SELECT * FROM "main"."stats" WHERE  failed < 0 ORDER BY tries DESC
-	//SELECT * FROM "main"."stats" WHERE  tries > 0 ORDER BY tries DESC
-	//SELECT * FROM "main"."stats" WHERE  learnd > 0
-	//SELECT * FROM "main"."stats" WHERE  tries > 0 AND failed < 0 ORDER BY tries DESC
-	//SELECT * FROM "main"."stats" WHERE  tries > 0 AND learnd > 0
-    //SELECT * FROM "main"."stats" JOIN "main"."examquestions" ON examquestions.ID=stats.ID 
-    //WHERE  tries > 0 AND failed < 0 ORDER BY tries DESC
-    //WHERE  elnum LIKE "G1A%"
 	//keep track of right answerd and put back in list the reinforce
-	
+	sort_questions_list ();
 }
 
 public void sort_questions_list () {
@@ -179,6 +168,7 @@ public void put_all_questions_in_list () {
     	list_failed.sort(compare_failed);	 
 		list_learnd.sort(compare_learnd);	
 		list_reinforce.sort(compare_reinforce);
+		list_new.sort(compare_new);
 		
 		foreach ( int i in list_failed ) {
     		if(mysize<=15&&mysize>=10) {
@@ -255,6 +245,15 @@ public int compare_reinforce (int? a, int? b) {
 	int x = stats_a[2];
 	int y = stats_b[2];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
+}
+
+//SELECT * FROM "main"."stats" JOIN "main"."examquestions" ON examquestions.ID=stats.ID 
+//WHERE  tries > 0 AND failed < 0 ORDER BY tries DESC
+//WHERE  elnum LIKE "G1A%"
+public int compare_new (int? a, int? b) { 
+	string x = get_elnum(a);
+	string y = get_elnum(b);
+	return (x[4] < y[4]) ? -1 : ((y[4] < x[4]) ? 1 : 0);
 }
 
 
