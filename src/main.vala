@@ -96,14 +96,7 @@ public void select_questions () {
 	//get list of IDs from slected questions
 	create_selected_questions ();
 	put_all_questions_in_list();
-	//create smaller list (or sort and remove) of questions from selected questoins list and get_stats; 
-	//remove learnd questions
-	for(int i=(listg.size-1); i!=-1;i--) {
-        int[3] stats = get_stats(listg[i]);
-        if(stats[2]>=1){
-	       listg.remove_at(i);
-        }
-    }
+
 	//sort so that if multible lessions are selected it goes changes...
 	// sort all in different list, one list for failed one for learnd one list for new  
 	sort_questions_list ();
@@ -143,6 +136,11 @@ public void put_all_questions_in_list () {
 	int rc; 
 	listg_index=0;
 	listg = new ArrayList<int>();
+	ArrayList<int> list_temp = new ArrayList<int>();
+	ArrayList<int> list_failed = new ArrayList<int>();
+	ArrayList<int> list_reinforce = new ArrayList<int>();
+	ArrayList<int> list_learnd = new ArrayList<int>();
+	ArrayList<int> list_new = new ArrayList<int>();
 
 	Statement stmt2;
 	if ((rc = db.prepare_v2 (selected_questions, -1, out stmt2, null)) == 1) {
@@ -155,14 +153,39 @@ public void put_all_questions_in_list () {
         case Sqlite.DONE:
             break;
         case Sqlite.ROW:
-        	listg.add(stmt2.column_int(0));
+        	list_temp.add(stmt2.column_int(0));
             break;
         default:
             printerr ("Error: %d, %s\n", rc, db.errmsg ());
             break;
         }
     } while (rc == Sqlite.ROW);
+        
+    //sort into the different lists and remove learnd questions
+    foreach (int i in list_temp) {
+        int[3] stats = get_stats(i);
+        if(stats[0] == 0) list_new.add(i);
+        else if(stats[1] < 0) list_failed.add(i);
+        	 else if(stats[2] > 2) list_learnd.add(i);
+        		  else list_reinforce.add(i);
+    } 
+     int mysize = list_failed.size + list_reinforce.size +list_new.size + list_learnd.size;
+     if(mysize > 15) mysize = 15;
+     if(mysize < 1) listg.add(1);
+     //move 15 questions in the main list, sort by exam groups and add failed (6) and some reinfoce (5) and also some new questions (2) and a learnd (1) one...
+	 else {
+		 //list_failed.sort(compare);
+	     
+     }
+     
+    
+    
 }
+
+public int compare (int? a, int? b) { 
+	return a - b; 
+}
+
 
 public void cont_next_question (int ID) {
 	int rc; 
