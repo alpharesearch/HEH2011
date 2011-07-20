@@ -3,13 +3,9 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="window">
-    <property name="width_request">1400</property>
-    <property name="height_request">950</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">HEH2011</property>
     <property name="window_position">center</property>
-    <property name="default_width">1024</property>
-    <property name="default_height">768</property>
     <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
       <object class="GtkVBox" id="vbox1">
@@ -39,7 +35,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
+                        <property name="fill">True</property>
                         <property name="pack_type">end</property>
                         <property name="position">0</property>
                       </packing>
@@ -62,7 +58,7 @@
                   </object>
                   <packing>
                     <property name="expand">True</property>
-                    <property name="fill">True</property>
+                    <property name="fill">False</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
@@ -79,7 +75,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
+                        <property name="fill">True</property>
                         <property name="pack_type">end</property>
                         <property name="position">0</property>
                       </packing>
@@ -102,7 +98,7 @@
                   </object>
                   <packing>
                     <property name="expand">True</property>
-                    <property name="fill">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -119,7 +115,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
+                        <property name="fill">True</property>
                         <property name="pack_type">end</property>
                         <property name="position">0</property>
                       </packing>
@@ -142,7 +138,7 @@
                   </object>
                   <packing>
                     <property name="expand">True</property>
-                    <property name="fill">True</property>
+                    <property name="fill">False</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
@@ -164,6 +160,7 @@
                     <property name="label" translatable="yes">label</property>
                     <property name="wrap">True</property>
                     <property name="wrap_mode">word-char</property>
+                    <property name="width_chars">120</property>
                     <attributes>
                       <attribute name="foreground" value="#0000998b04bb"/>
                       <attribute name="scale" value="1.3999999999999999"/>
@@ -181,6 +178,8 @@
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">label</property>
                     <property name="wrap">True</property>
+                    <property name="wrap_mode">word-char</property>
+                    <property name="width_chars">80</property>
                     <attributes>
                       <attribute name="foreground" value="#0000c78e0ec3"/>
                       <attribute name="scale" value="1.2"/>
@@ -198,6 +197,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">label</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap_mode">word-char</property>
+                    <property name="width_chars">80</property>
                     <attributes>
                       <attribute name="foreground" value="#834d00000000"/>
                     </attributes>
@@ -237,8 +239,11 @@
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="ypad">62</property>
                     <property name="label" translatable="yes">label</property>
                     <property name="wrap">True</property>
+                    <property name="wrap_mode">word-char</property>
+                    <property name="width_chars">120</property>
                     <attributes>
                       <attribute name="scale" value="1.6000000000000001"/>
                     </attributes>
@@ -413,7 +418,7 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">False</property>
                     <property name="position">11</property>
                   </packing>
@@ -502,6 +507,17 @@
                             <property name="position">2</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton4">
                             <property name="label" translatable="yes">T4</property>
@@ -515,7 +531,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -531,20 +547,9 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox3">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton6">
                             <property name="label" translatable="yes">T6</property>
@@ -558,9 +563,20 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox10">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton7">
                             <property name="label" translatable="yes">T7</property>
@@ -574,7 +590,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -590,7 +606,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -606,8 +622,22 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">2</property>
                           </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox17">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton10">
@@ -622,14 +652,17 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">1</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
@@ -711,6 +744,17 @@
                             <property name="position">2</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox5">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton14">
                             <property name="label" translatable="yes">G4</property>
@@ -724,7 +768,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -740,20 +784,9 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox5">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton16">
                             <property name="label" translatable="yes">G6</property>
@@ -767,9 +800,20 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox12">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton17">
                             <property name="label" translatable="yes">G7</property>
@@ -783,7 +827,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -799,7 +843,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -815,8 +859,22 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">2</property>
                           </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox16">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton20">
@@ -831,14 +889,17 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">1</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
@@ -920,6 +981,17 @@
                             <property name="position">2</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox7">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton24">
                             <property name="label" translatable="yes">E4</property>
@@ -933,7 +1005,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -949,20 +1021,9 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox7">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton26">
                             <property name="label" translatable="yes">E6</property>
@@ -976,9 +1037,20 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox13">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton27">
                             <property name="label" translatable="yes">E7</property>
@@ -992,7 +1064,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -1008,7 +1080,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -1024,8 +1096,22 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">2</property>
                           </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox15">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton30">
@@ -1040,14 +1126,17 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">1</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
@@ -1081,7 +1170,7 @@
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
@@ -1090,11 +1179,11 @@
           <object class="GtkStatusbar" id="statusbar1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="spacing">2</property>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
+            <property name="pack_type">end</property>
             <property name="position">2</property>
           </packing>
         </child>

@@ -76,9 +76,16 @@ public void check_answer (int myanswer) {
 	}
     int[3] stats = get_stats(Q_ID);
     stats[0]++; //add to tries
-    if(OK) stats[1]++; // if ok add one to fails
-    else if(stats[1]>=0) stats[1] = -2; // for first time or if later fail set to -2
-    	else stats[1]=stats[1]--; // if not OK sub fails
+    
+	if(OK){ 
+    	if(stats[1]<-2) stats[1] = -1; // if he faild before and gets it right set to -1
+    		else stats[1]++; // if ok add one to fails
+    }
+    else{ 
+    	if(stats[1]>=0) stats[1] = -2; // for first time or if later fail set to -2
+    		else stats[1]--; // if not OK sub fails
+    }
+    
     if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
     set_stats(Q_ID, stats);
     
@@ -139,6 +146,10 @@ public void put_all_questions_in_list () {
 	ArrayList<int?> list_reinforce = new ArrayList<int?>();
 	ArrayList<int?> list_learnd = new ArrayList<int?>();
 	ArrayList<int?> list_new = new ArrayList<int?>();
+	
+	ArrayList<int?> list_failed_r = new ArrayList<int?>();
+	ArrayList<int?> list_reinforce_r = new ArrayList<int?>();
+	ArrayList<int?> list_new_r = new ArrayList<int?>();
 
 	Statement stmt2;
 	if ((rc = db.prepare_v2 (selected_questions, -1, out stmt2, null)) == 1) {
@@ -185,6 +196,7 @@ public void put_all_questions_in_list () {
     		mysize--;
     		printerr ("failed %i - %s\n", i, get_elnum(i));
     		}
+    		else list_failed_r.add(i);
   		}
   		foreach ( int i in list_reinforce ) {
     		if(mysize<=15&&mysize>=5) {
@@ -192,6 +204,7 @@ public void put_all_questions_in_list () {
     		mysize--;
     		printerr ("reinf %i - %s\n", i, get_elnum(i));
     		}
+    		else list_reinforce_r.add(i);
   		}
   		foreach ( int i in list_new ) {
     		if(mysize<=15&&mysize>=3) {
@@ -199,6 +212,7 @@ public void put_all_questions_in_list () {
     		mysize--;
     		printerr ("new %i - %s\n", i, get_elnum(i));
     		}
+    		else list_new_r.add(i);
   		}
   		foreach ( int i in  list_learnd) {
     		if(mysize<=15&&mysize>=1) {
@@ -207,29 +221,28 @@ public void put_all_questions_in_list () {
     		printerr ("learnd %i - %s\n", i, get_elnum(i));
     		}
     	}
-    	foreach ( int i in list_new ) {
+    	foreach ( int i in list_new_r ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
     		printerr ("new %i - %s\n", i, get_elnum(i));
     		}
   		}
-  		foreach ( int i in list_reinforce ) {
+  		foreach ( int i in list_reinforce_r ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
     		printerr ("reinf %i - %s\n", i, get_elnum(i));
     		}
   		}
-  		foreach ( int i in list_failed ) {
+  		foreach ( int i in list_failed_r ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
     		printerr ("failed %i - %s\n", i, get_elnum(i));
     		}
   		}
-  		
-    } 
+    }
 }
 
 public int compare_failed (int? a, int? b) { 

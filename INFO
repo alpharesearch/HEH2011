@@ -1,0 +1,42 @@
+SUBELEMENT		Info											total qestions / question to learn per group
+
+SUBELEMENT G1 - COMMISSION'S RULES [5 Exam Questions - 5 Groups] 58 11.6
+
+SUBELEMENT G2 - OPERATING PROCEDURES [5 Exam Questions - 5 Groups] 58 11.6
+
+SUBELEMENT G4 - AMATEUR RADIO PRACTICES [5 Exam Questions - 5 groups] 65 13
+
+SUBELEMENT G9 - ANTENNAS AND FEED LINES [4 exam questions - 4 groups] 56 14
+
+SUBELEMENT G3 - RADIO WAVE PROPAGATION [3 Exam Questions - 3 Groups] 41 13.6
+
+SUBELEMENT G5 - ELECTRICAL PRINCIPLES [3 exam questions - 3 groups] 42 14
+
+SUBELEMENT G7 - PRACTICAL CIRCUITS [3 exam question - 3 groups] 38 12.6
+
+SUBELEMENT G6 - CIRCUIT COMPONENTS [3 exam question - 3 groups] 46  15
+
+SUBELEMENT G8 - SIGNALS AND EMISSIONS [2 exam questions - 2 groups] 24 12
+
+SUBELEMENT G0 - ELECTRICAL AND RF SAFETY [2 exam Questions - 2 groups] 29 14.5
+
+
+SUBELEMENT E9 -– ANTENNAS AND TRANSMISSION LINES [8 Exam Questions -- 8 Groups] 114 14.25
+
+SUBELEMENT E7 -- PRACTICAL CIRCUITS [8 Exam Questions -- 8 Groups] 129 16
+
+SUBELEMENT E1 -– COMMISSION’S RULES [6 Exam Questions -- 6 Groups] 85 14.2
+
+SUBELEMENT E6 -- CIRCUIT COMPONENTS [6 Exam Questions -- 6 Groups] 89 14.8
+
+SUBELEMENT E2 -- OPERATING PRACTICES AND PROCEDURES [5 Exam Questions -- 5 Groups] 69 13.8
+
+SUBELEMENT E4 -- AMATEUR RADIO TECHNOLOGY AND MEASUREMENTS [5 Exam Questions -- 5 Groups] 72 14.4
+
+SUBELEMENT E8 -- SIGNALS AND EMISSIONS [4 Exam Questions -- 4 Groups] 61 15.3
+
+SUBELEMENT E5 -- ELECTRICAL PRINCIPLES [4 Exam Questions -- 4 Groups] 72 18
+
+SUBELEMENT E3 -- RADIO WAVE PROPAGATION [3 Exam Questions -- 3 Groups] 36 12
+
+SUBELEMENT E0 – Safety - [1 exam question -– 1 group] 11
