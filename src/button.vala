@@ -101,7 +101,7 @@ public void create_selected_questions () {
 	if(cb29.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb29.label + "%\"";		
 	if(cb30.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb30.label + "%\"";		
 	selected_questions = """SELECT * FROM "main"."examquestions" WHERE """ + buffer.offset(3);
-	printerr ("SQL output: %s\n", selected_questions);
+	//printerr ("SQL output: %s\n", selected_questions);
 }
 
 public void on_togglebutton_toggled (ToggleButton source) {

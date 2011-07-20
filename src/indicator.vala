@@ -50,7 +50,7 @@ public static int Round(double num) {
 public void create_gfx_for_bar (Context cr, int[] stats) {
 	//                                          white     red       green      blue
 	//                                          all       faild    learnd    reinfoce
-	stderr.printf ("BAR: %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
+	//stderr.printf ("BAR: %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
 	
 	int all = stats[0]+stats[1]+stats[2]+stats[3];
 
@@ -58,7 +58,7 @@ public void create_gfx_for_bar (Context cr, int[] stats) {
 	int blue   = Round((738.0 / (double) all) * (double) stats[3]);
 	int green   = Round((738.0 / (double) all) * (double) stats[2]);
 	int white = Round((738.0 / (double) all) * (double) stats[0]);
-	stderr.printf ("BAR: %d %d %d %d\n", red, blue, green, white);
+	//stderr.printf ("BAR: %d %d %d %d\n", red, blue, green, white);
 	
 	int red_start = 0;
 	int red_stop = red;

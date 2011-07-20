@@ -6,7 +6,7 @@
     <property name="width_request">1400</property>
     <property name="height_request">950</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Sample Application</property>
+    <property name="title" translatable="yes">HEH2011</property>
     <property name="window_position">center</property>
     <property name="default_width">1024</property>
     <property name="default_height">768</property>
@@ -440,6 +440,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="use_action_appearance">False</property>
+                        <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <signal name="pressed" handler="on_togglebutton_toggled" swapped="no"/>
                       </object>
@@ -649,6 +650,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="use_action_appearance">False</property>
+                        <property name="active">True</property>
                         <signal name="pressed" handler="on_togglebutton_toggled" swapped="no"/>
                       </object>
                       <packing>
@@ -857,6 +859,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="use_action_appearance">False</property>
+                        <property name="active">True</property>
                         <signal name="pressed" handler="on_togglebutton_toggled" swapped="no"/>
                       </object>
                       <packing>

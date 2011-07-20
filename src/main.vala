@@ -75,10 +75,11 @@ public void check_answer (int myanswer) {
 		labe16.label = "Wrong!";
 	}
     int[3] stats = get_stats(Q_ID);
-    stats[0]++;
-    if(OK) stats[1]++;
-    else stats[1]=stats[1]-2;
-    if(stats[0]>=3 && stats[1]>2)stats[2]++;
+    stats[0]++; //add to tries
+    if(OK) stats[1]++; // if ok add one to fails
+    else if(stats[1]>=0) stats[1] = -2; // for first time or if later fail set to -2
+    	else stats[1]=stats[1]--; // if not OK sub fails
+    if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
     set_stats(Q_ID, stats);
     
 	cols2++;
@@ -182,49 +183,49 @@ public void put_all_questions_in_list () {
     		if(mysize<=15&&mysize>=10) {
     		listg.add(i);
     		mysize--;
-    		//printerr ("failed %i - %s\n", i, get_elnum(i));
+    		printerr ("failed %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_reinforce ) {
     		if(mysize<=15&&mysize>=5) {
     		listg.add(i);
     		mysize--;
-    		//printerr ("reinf %i - %s\n", i, get_elnum(i));
-    		}
-  		}
-  		foreach ( int i in list_learnd ) {
-    		if(mysize<=15&&mysize>=3) {
-    		listg.add(i);
-    		mysize--;
-    		//printerr ("learnd %i - %s\n", i, get_elnum(i));
+    		printerr ("reinf %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_new ) {
+    		if(mysize<=15&&mysize>=3) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("new %i - %s\n", i, get_elnum(i));
+    		}
+  		}
+  		foreach ( int i in  list_learnd) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		//printerr ("new %i - %s\n", i, get_elnum(i));
+    		printerr ("learnd %i - %s\n", i, get_elnum(i));
     		}
     	}
-    	foreach ( int i in list_learnd ) {
+    	foreach ( int i in list_new ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		//printerr ("learnd %i - %s\n", i, get_elnum(i));
+    		printerr ("new %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_reinforce ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		//printerr ("reinf %i - %s\n", i, get_elnum(i));
+    		printerr ("reinf %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_failed ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		//printerr ("failed %i - %s\n", i, get_elnum(i));
+    		printerr ("failed %i - %s\n", i, get_elnum(i));
     		}
   		}
   		
