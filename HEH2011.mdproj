@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="src\main.vala" />
     <Compile Include="src\button.vala" />
+    <Compile Include="src\indicator.vala" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\sample.ui">

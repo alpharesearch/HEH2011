@@ -85,6 +85,7 @@ public void check_answer (int myanswer) {
         statusbar1.push(0,@"Wrong! Question $cols2 of $cols");
         labe14.label = "Nice try!";
     }
+    update_bar_gfx();
 }
 
 public void next_question () {
@@ -174,49 +175,49 @@ public void put_all_questions_in_list () {
     		if(mysize<=15&&mysize>=10) {
     		listg.add(i);
     		mysize--;
-    		printerr ("failed %i\n", i);
+    		//printerr ("failed %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_reinforce ) {
     		if(mysize<=15&&mysize>=5) {
     		listg.add(i);
     		mysize--;
-    		printerr ("reinforce %i\n", i);
+    		//printerr ("reinf %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_learnd ) {
     		if(mysize<=15&&mysize>=3) {
     		listg.add(i);
     		mysize--;
-    		printerr ("lernd %i\n", i);
+    		//printerr ("learnd %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_new ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		printerr ("new %i\n", i);
+    		//printerr ("new %i - %s\n", i, get_elnum(i));
     		}
     	}
     	foreach ( int i in list_learnd ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		printerr ("lernd %i\n", i);
+    		//printerr ("learnd %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_reinforce ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		printerr ("reinforce %i\n", i);
+    		//printerr ("reinf %i - %s\n", i, get_elnum(i));
     		}
   		}
   		foreach ( int i in list_failed ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
-    		printerr ("failed %i\n", i);
+    		//printerr ("failed %i - %s\n", i, get_elnum(i));
     		}
   		}
   		
@@ -247,13 +248,12 @@ public int compare_reinforce (int? a, int? b) {
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
-//SELECT * FROM "main"."stats" JOIN "main"."examquestions" ON examquestions.ID=stats.ID 
-//WHERE  tries > 0 AND failed < 0 ORDER BY tries DESC
-//WHERE  elnum LIKE "G1A%"
 public int compare_new (int? a, int? b) { 
-	string x = get_elnum(a);
-	string y = get_elnum(b);
-	return (x[4] < y[4]) ? -1 : ((y[4] < x[4]) ? 1 : 0);
+	string xs = get_elnum(a);
+	string ys = get_elnum(b);
+	int x = xs.offset(3).to_int();
+	int y = ys.offset(3).to_int();;
+	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
 
@@ -451,6 +451,7 @@ int main (string[] args) {
         statusbar1.push(0,"Loading DB... Done");
         var cb1 = builder.get_object ("checkbutton1") as CheckButton;
         cb1.active = true;
+        update_bar_gfx();
         next_question ();
         Gtk.main ();
         
