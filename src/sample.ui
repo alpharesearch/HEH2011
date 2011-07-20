@@ -3,6 +3,8 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="window">
+    <property name="width_request">1200</property>
+    <property name="height_request">1024</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Sample Application</property>
     <property name="window_position">center</property>
@@ -31,7 +33,7 @@
             </child>
             <child>
               <object class="GtkDrawingArea" id="drawingarea1">
-                <property name="width_request">200</property>
+                <property name="width_request">300</property>
                 <property name="height_request">25</property>
                 <property name="visible">True</property>
                 <property name="app_paintable">True</property>
@@ -39,8 +41,8 @@
                 <signal name="expose-event" handler="on_drawingarea1_expose_event" swapped="no"/>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -58,7 +60,7 @@
             </child>
             <child>
               <object class="GtkDrawingArea" id="drawingarea2">
-                <property name="width_request">200</property>
+                <property name="width_request">300</property>
                 <property name="height_request">25</property>
                 <property name="visible">True</property>
                 <property name="app_paintable">True</property>
@@ -66,8 +68,8 @@
                 <signal name="expose-event" handler="on_drawingarea2_expose_event" swapped="no"/>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">3</property>
               </packing>
             </child>
@@ -85,7 +87,7 @@
             </child>
             <child>
               <object class="GtkDrawingArea" id="drawingarea3">
-                <property name="width_request">270</property>
+                <property name="width_request">300</property>
                 <property name="height_request">25</property>
                 <property name="visible">True</property>
                 <property name="app_paintable">True</property>
@@ -93,8 +95,8 @@
                 <signal name="expose-event" handler="on_drawingarea3_expose_event" swapped="no"/>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">5</property>
               </packing>
             </child>
@@ -589,7 +591,7 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
@@ -797,7 +799,7 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
@@ -1005,10 +1007,13 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">2</property>
                   </packing>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

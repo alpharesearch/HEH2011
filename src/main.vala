@@ -19,6 +19,12 @@ int answerg;
 ArrayList<int> listg;
 int listg_index;
 
+enum st {
+ TRIES,
+ FAIL,
+ LEARND,
+}
+
 public int[] get_stats(int ID){
 	int rc; 
 	string a="0",b="0",c="0";
