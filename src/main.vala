@@ -83,12 +83,13 @@ public void check_answer (int myanswer) {
     
 	cols2++;
     var labe14 = builder.get_object ("label4") as Label;
+    int count = listg.size;
 	if(OK) {
-        statusbar1.push(0,@"Good Job! Question $cols2 of $cols");
+        statusbar1.push(0,@"Good Job! Question $listg_index of $count");
         labe14.label = "You got it!";
     }
     else{ 
-        statusbar1.push(0,@"Wrong! Question $cols2 of $cols");
+        statusbar1.push(0,@"Wrong! Question $listg_index of $count");
         labe14.label = "Nice try!";
     }
     update_bar_gfx();
@@ -97,13 +98,16 @@ public void check_answer (int myanswer) {
 public void next_question () {
 	if(listg_index==-1 || listg_index>=listg.size) select_questions ();
 	cont_next_question(listg[listg_index++]);
+	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
+	int count = listg.size;
+    statusbar1.push(0,@"Question $listg_index of $count");
 }
 
 public void select_questions () {
+	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
+    statusbar1.push(0,"Loading... WAIT");
 	//get list of IDs from slected questions
 	create_selected_questions ();
-	put_all_questions_in_list();
-
 	//sort so that if multible lessions are selected it goes changes...
 	// sort all in different list, one list for failed one for learnd one list for new  
 	//put questions with less tries to the front 
@@ -111,10 +115,7 @@ public void select_questions () {
 	//short the list
 	//keep track of wrong answerd and put back in list
 	//keep track of right answerd and put back in list the reinforce
-	sort_questions_list ();
-}
-
-public void sort_questions_list () {
+	put_all_questions_in_list();
 }
 
 public string get_elnum(int ID){
@@ -157,7 +158,7 @@ public void put_all_questions_in_list () {
         }
     } while (rc == Sqlite.ROW);
         
-    //sort into the different lists and remove learnd questions
+    //sort into the different lists
     foreach (int i in list_temp) {
         int[3] stats = get_stats(i);
         if(stats[0] == 0) list_new.add(i);
@@ -452,9 +453,9 @@ int main (string[] args) {
         builder.add_from_file ("src/sample.ui");
         builder.connect_signals (null);
         var window = builder.get_object ("window") as Gtk.Window;
-        statusbar1 = builder.get_object ("statusbar1") as Statusbar;
         window.show_all ();
-        statusbar1.push(0,"Loading DB... Done");
+        statusbar1 = builder.get_object ("statusbar1") as Statusbar;
+        statusbar1.push(0,"Loading DB...");
         var cb1 = builder.get_object ("checkbutton1") as CheckButton;
         cb1.active = true;
         update_bar_gfx();

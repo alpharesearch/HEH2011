@@ -1,5 +1,6 @@
 using Gtk;
 using Cairo;
+using GLib;
 
 public void update_bar_gfx () {
 	var labe111 = builder.get_object ("label11") as Label;
@@ -41,29 +42,53 @@ public int[] create_stats_for_bar(string pool){
     return rbuff;
 }
 
+public static int Round(double num) {
+    (num > 0) ? (num+= 0.5) : (num+= (-0.5));
+    return (int)num;
+    }
+
 public void create_gfx_for_bar (Context cr, int[] stats) {
 	//                                          white     red       green      blue
 	//                                          all       faild    learnd    reinfoce
-	//stderr.printf ("BAR: %d %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
+	stderr.printf ("BAR: %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
 	
 	int all = stats[0]+stats[1]+stats[2]+stats[3];
-	double white = (900.0 / (double) all) * (double) stats[0];
-	double red   = (900.0 / (double) all) * (double) stats[1];
-	double green   = (900.0 / (double) all) * (double) stats[2];
-	double blue   = (900.0 / (double) all) * (double) stats[3];
+
+	int red   = Round((738.0 / (double) all) * (double) stats[1]);
+	int blue   = Round((738.0 / (double) all) * (double) stats[3]);
+	int green   = Round((738.0 / (double) all) * (double) stats[2]);
+	int white = Round((738.0 / (double) all) * (double) stats[0]);
+	stderr.printf ("BAR: %d %d %d %d\n", red, blue, green, white);
 	
+	int red_start = 0;
+	int red_stop = red;
+	int blue_start = red + 1;
+	int blue_stop = red + blue;
+	int green_start = red + blue + 1;
+	int green_stop = red + blue + green;
+	int white_start = red + blue + green +1;
+	int white_stop = red + blue + green + white;
+
+	cr.set_line_width (30);
+	
+	//red
+	cr.set_source_rgb (1, 0, 0);
+    cr.move_to (10, red_start);
+    cr.line_to (10, red_stop);
+    cr.stroke ();   
+	cr.set_source_rgb (0, 0, 1);
+    cr.move_to (10, blue_start);
+    cr.line_to (10, blue_stop);
+    cr.stroke ();    
 	cr.set_source_rgb (0, 1, 0);
-	cr.set_line_width (3);
-    cr.move_to (0, 3);
-        cr.line_to (300, 3);
-        cr.move_to (0, 9);
-        cr.line_to (200, 9);
-        cr.move_to (0, 15);
-        cr.line_to (100, 15);
-        cr.move_to (0, 21);
-        cr.line_to (50, 21);
-        cr.stroke ();
-        cr.clip ();
+    cr.move_to (10, green_start);
+    cr.line_to (10, green_stop);
+    cr.stroke ();   
+	cr.set_source_rgb (1, 1, 1);
+    cr.move_to (10, white_start);
+    cr.line_to (10, white_stop);
+    cr.stroke ();
+    cr.clip ();
 }
 
 

@@ -29,6 +29,13 @@ public void on_button5_clicked (Button source) {
     next_question ();
 }
 
+public void on_button6_clicked (Button source) {
+	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
+    statusbar1.push(0,"Loading... WAIT");
+	select_questions ();
+	next_question ();
+}
+
 public void create_selected_questions () {
 	var cb1 = builder.get_object ("checkbutton1") as CheckButton;
 	var cb2 = builder.get_object ("checkbutton2") as CheckButton;
@@ -203,6 +210,5 @@ var cb30 = builder.get_object ("checkbutton30") as CheckButton;
 	   else if(source.label=="Extra Class") cb21.active=true;
 	   else cb1.active=true;
    	}
-	select_questions ();
-	next_question ();
+
 }
