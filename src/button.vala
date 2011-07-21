@@ -24,12 +24,21 @@ public void on_button4_clicked (Button source) {
     if(OK==true) next_question ();
 }
 
+// skip
 public void on_button5_clicked (Button source) {
     check_answer(0);
     next_question ();
 }
 
+int radiobutton;
+// OK
 public void on_button6_clicked (Button source) {
+	var radiobutton1 = builder.get_object ("radiobutton1") as RadioButton;
+	var radiobutton2 = builder.get_object ("radiobutton2") as RadioButton;
+	var radiobutton3 = builder.get_object ("radiobutton3") as RadioButton;
+	if(radiobutton1.active) radiobutton = 0; // eval
+	if(radiobutton2.active) radiobutton = 1; // study
+	if(radiobutton3.active) radiobutton = 2; // test
 	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
     statusbar1.push(0,"Loading... WAIT");
 	select_questions ();

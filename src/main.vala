@@ -76,7 +76,7 @@ public void check_answer (int myanswer) {
 	}
     int[3] stats = get_stats(Q_ID);
     stats[0]++; //add to tries
-    
+
 	if(OK){ 
     	if(stats[1]<-2) stats[1] = -1; // if he faild before and gets it right set to -1
     		else stats[1]++; // if ok add one to fails
@@ -87,6 +87,9 @@ public void check_answer (int myanswer) {
     }
     
     if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
+    
+    if(radiobutton==0&&OK) stats[1]++;
+    
     set_stats(Q_ID, stats);
     
 	cols2++;
@@ -169,79 +172,96 @@ public void put_all_questions_in_list () {
             break;
         }
     } while (rc == Sqlite.ROW);
-        
-    //sort into the different lists
-    foreach (int i in list_temp) {
-        int[3] stats = get_stats(i);
-        if(stats[0] == 0) list_new.add(i);
-        else if(stats[1] < 0) list_failed.add(i);
-        	 else if(stats[2] > 2) list_learnd.add(i);
-        		  else list_reinforce.add(i);
-    } 
     
-     int mysize = list_failed.size + list_reinforce.size +list_new.size + list_learnd.size;
-     if(mysize > 15) mysize = 15;
-     if(mysize < 1) listg.add(1);
-     //move 15 questions in the main list, sort by exam groups and add failed (6) and some reinfoce (5) and also some new questions (2) and a learnd (1) one...
-	 else {
-    	list_failed.sort(compare_failed);	 
-		list_learnd.sort(compare_learnd);	
-		list_reinforce.sort(compare_reinforce);
-		list_new.sort(compare_new);
-		
-		foreach ( int i in list_failed ) {
-    		if(mysize<=15&&mysize>=10) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("failed %i - %s\n", i, get_elnum(i));
-    		}
-    		else list_failed_r.add(i);
-  		}
-  		foreach ( int i in list_reinforce ) {
-    		if(mysize<=15&&mysize>=5) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("reinf %i - %s\n", i, get_elnum(i));
-    		}
-    		else list_reinforce_r.add(i);
-  		}
-    	foreach ( int i in list_new ) {
-    		if(mysize<=15&&mysize>=1) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("new %i - %s\n", i, get_elnum(i));
-    		}
-  		}
-  		foreach ( int i in list_reinforce_r ) {
-    		if(mysize<=15&&mysize>=1) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("reinf %i - %s\n", i, get_elnum(i));
-    		}
-  		}
-  		foreach ( int i in list_failed_r ) {
-    		if(mysize<=15&&mysize>=10) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("failedr %i - %s\n", i, get_elnum(i));
-    		}
-    	}	
-		foreach ( int i in  list_learnd) {
-    		if(mysize<=15&&mysize>=1) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("learnd %i - %s\n", i, get_elnum(i));
-    		}
-    	}
-    	foreach ( int i in list_failed ) {
-    		if(mysize<=15&&mysize>=1) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("failed %i - %s\n", i, get_elnum(i));
-    		}
-  		}
+    //eval
+    if(radiobutton==0) {
+	    list_temp.sort(compare_new);
+	    foreach (int i in list_temp) {
+	    	listg.add(i);
+	    }
     }
-    printerr ("mysize %i \n", mysize);
+    //study
+    if(radiobutton==1) {    
+	    //sort into the different lists
+	    foreach (int i in list_temp) {
+	        int[3] stats = get_stats(i);
+	        if(stats[0] == 0) list_new.add(i);
+	        else if(stats[1] < 0) list_failed.add(i);
+	        	 else if(stats[2] > 2) list_learnd.add(i);
+	        		  else list_reinforce.add(i);
+	    } 
+	    
+	     int mysize = list_failed.size + list_reinforce.size +list_new.size + list_learnd.size;
+	     if(mysize > 15) mysize = 15;
+	     if(mysize < 1) listg.add(1);
+	     //move 15 questions in the main list, sort by exam groups and add failed (6) and some reinfoce (5) and also some new questions (2) and a learnd (1) one...
+		 else {
+	    	list_failed.sort(compare_failed);	 
+			list_learnd.sort(compare_learnd);	
+			list_reinforce.sort(compare_reinforce);
+			list_new.sort(compare_new);
+			
+			foreach ( int i in list_failed ) {
+	    		if(mysize<=15&&mysize>=10) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("failed %i - %s\n", i, get_elnum(i));
+	    		}
+	    		else list_failed_r.add(i);
+	  		}
+	  		foreach ( int i in list_reinforce ) {
+	    		if(mysize<=15&&mysize>=5) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("reinf %i - %s\n", i, get_elnum(i));
+	    		}
+	    		else list_reinforce_r.add(i);
+	  		}
+	    	foreach ( int i in list_new ) {
+	    		if(mysize<=15&&mysize>=1) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("new %i - %s\n", i, get_elnum(i));
+	    		}
+	  		}
+	  		foreach ( int i in list_reinforce_r ) {
+	    		if(mysize<=15&&mysize>=1) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("reinf %i - %s\n", i, get_elnum(i));
+	    		}
+	  		}
+	  		foreach ( int i in list_failed_r ) {
+	    		if(mysize<=15&&mysize>=10) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("failedr %i - %s\n", i, get_elnum(i));
+	    		}
+	    	}	
+			foreach ( int i in  list_learnd) {
+	    		if(mysize<=15&&mysize>=1) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("learnd %i - %s\n", i, get_elnum(i));
+	    		}
+	    	}
+	    	foreach ( int i in list_failed ) {
+	    		if(mysize<=15&&mysize>=1) {
+	    		listg.add(i);
+	    		mysize--;
+	    		printerr ("failed %i - %s\n", i, get_elnum(i));
+	    		}
+	  		}
+	    }
+	    printerr ("mysize %i \n", mysize);
+    }
+    //test TODO
+    if(radiobutton==2) {
+	    list_temp.sort(compare_new);
+	    foreach (int i in list_temp) {
+	    	listg.add(i);
+	    }
+    }
 }
 
 public int compare_failed (int? a, int? b) { 
@@ -456,6 +476,7 @@ int main (string[] args) {
     kg="";
     Q_ID=0;
     listg_index=-1;
+    radiobutton = 1;
 	rc = Database.open ("src/hamdb", out db);
 	if (rc != Sqlite.OK) {
     	stderr.printf ("Can't open database: %d, %s\n", rc, db.errmsg ());

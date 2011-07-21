@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
   <MonoDevelop.Ide.Workbench ActiveDocument="src/main.vala" ctype="Workbench">
     <Files>
-      <File FileName="src/main.vala" Line="237" Column="31" />
-      <File FileName="src/button.vala" Line="104" Column="4" />
+      <File FileName="src/main.vala" Line="263" Column="6" />
+      <File FileName="src/button.vala" Line="33" Column="16" />
       <File FileName="src/indicator.vala" Line="50" Column="52" />
     </Files>
   </MonoDevelop.Ide.Workbench>
