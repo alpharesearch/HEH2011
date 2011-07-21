@@ -182,7 +182,6 @@ public void put_all_questions_in_list () {
      int mysize = list_failed.size + list_reinforce.size +list_new.size + list_learnd.size;
      if(mysize > 15) mysize = 15;
      if(mysize < 1) listg.add(1);
-    
      //move 15 questions in the main list, sort by exam groups and add failed (6) and some reinfoce (5) and also some new questions (2) and a learnd (1) one...
 	 else {
     	list_failed.sort(compare_failed);	 
@@ -206,22 +205,7 @@ public void put_all_questions_in_list () {
     		}
     		else list_reinforce_r.add(i);
   		}
-  		foreach ( int i in list_new ) {
-    		if(mysize<=15&&mysize>=3) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("new %i - %s\n", i, get_elnum(i));
-    		}
-    		else list_new_r.add(i);
-  		}
-  		foreach ( int i in  list_learnd) {
-    		if(mysize<=15&&mysize>=1) {
-    		listg.add(i);
-    		mysize--;
-    		printerr ("learnd %i - %s\n", i, get_elnum(i));
-    		}
-    	}
-    	foreach ( int i in list_new_r ) {
+    	foreach ( int i in list_new ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
@@ -236,6 +220,20 @@ public void put_all_questions_in_list () {
     		}
   		}
   		foreach ( int i in list_failed_r ) {
+    		if(mysize<=15&&mysize>=10) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("failedr %i - %s\n", i, get_elnum(i));
+    		}
+    	}	
+		foreach ( int i in  list_learnd) {
+    		if(mysize<=15&&mysize>=1) {
+    		listg.add(i);
+    		mysize--;
+    		printerr ("learnd %i - %s\n", i, get_elnum(i));
+    		}
+    	}
+    	foreach ( int i in list_failed ) {
     		if(mysize<=15&&mysize>=1) {
     		listg.add(i);
     		mysize--;
@@ -243,6 +241,7 @@ public void put_all_questions_in_list () {
     		}
   		}
     }
+    printerr ("mysize %i \n", mysize);
 }
 
 public int compare_failed (int? a, int? b) { 

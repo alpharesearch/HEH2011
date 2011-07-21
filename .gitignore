@@ -4,3 +4,4 @@
 .lock-wscript
 importer/testdb
 src/hamdb
+/importer/hamdb
