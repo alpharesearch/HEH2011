@@ -88,7 +88,11 @@ public void check_answer (int myanswer) {
     
     if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
     
-    if(radiobutton==0&&OK) stats[1]++;
+    if(radiobutton==0 && OK && stats[0]==1) {
+    	stats[0]=3;
+    	stats[1]=3;
+    	stats[2]=1;
+    }
     
     set_stats(Q_ID, stats);
     
@@ -173,12 +177,15 @@ public void put_all_questions_in_list () {
         }
     } while (rc == Sqlite.ROW);
     
+    if(list_temp.size==0) list_temp.add(1);
+    
     //eval
     if(radiobutton==0) {
 	    list_temp.sort(compare_new);
-	    foreach (int i in list_temp) {
+	    foreach ( int i in list_temp ) {
 	    	listg.add(i);
-	    }
+	    	printerr ("eval %i - %s\n", i, get_elnum(i));
+	  	}
     }
     //study
     if(radiobutton==1) {    
@@ -257,10 +264,17 @@ public void put_all_questions_in_list () {
     }
     //test TODO
     if(radiobutton==2) {
-	    list_temp.sort(compare_new);
-	    foreach (int i in list_temp) {
-	    	listg.add(i);
+	    int tempint,j;
+	    for (int i=(list_temp.size-1); i>= 1;i--) {
+		    j = Random.int_range (0, i);
+	    	tempint = list_temp[j];
+	    	list_temp[j] = list_temp[i];
+	    	list_temp[i] = tempint;
 	    }
+	    foreach ( int i in list_temp ) {
+	    	listg.add(i);
+	    	printerr ("random %i - %s\n", i, get_elnum(i));
+	  	}
     }
 }
 
@@ -321,7 +335,8 @@ public void cont_next_question (int ID) {
 				//FileUtils.set_data("temp.jpg", data2);
 	            //Pixbuf pixbuf = new Pixbuf.from_file_at_scale("temp.jpg",320,240,true);
 	            var imgstream = new GLib.MemoryInputStream.from_data(data2, null);
-                Pixbuf pixbuf = new Gdk.Pixbuf.from_stream(imgstream,null);
+	            //Pixbuf pixbuf = new Gdk.Pixbuf.from_stream(imgstream,null);
+                Pixbuf pixbuf = new Gdk.Pixbuf.from_stream_at_scale(imgstream, 540, 380, true, null);
 	            var image1 = builder.get_object ("image1") as Gtk.Image;
 	            image1.set_from_pixbuf(pixbuf);
             }

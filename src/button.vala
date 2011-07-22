@@ -76,41 +76,47 @@ public void create_selected_questions () {
 	var cb28 = builder.get_object ("checkbutton28") as CheckButton;
 	var cb29 = builder.get_object ("checkbutton29") as CheckButton;
 	var cb30 = builder.get_object ("checkbutton30") as CheckButton;
-	
+	var entry1 = builder.get_object ("entry1") as Entry;
 	string buffer="";
-	
-	if(cb1.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb1.label + "%\"";
-	if(cb2.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb2.label + "%\"";
-	if(cb3.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb3.label + "%\"";
-	if(cb4.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb4.label + "%\"";
-	if(cb5.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb5.label + "%\"";
-	if(cb6.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb6.label + "%\"";
-	if(cb7.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb7.label + "%\"";
-	if(cb8.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb8.label + "%\"";
-	if(cb9.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb9.label + "%\"";		
-	if(cb10.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb10.label + "%\"";		
-	if(cb11.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb11.label + "%\"";
-	if(cb12.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb12.label + "%\"";
-	if(cb13.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb13.label + "%\"";
-	if(cb14.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb14.label + "%\"";
-	if(cb15.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb15.label + "%\"";
-	if(cb16.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb16.label + "%\"";
-	if(cb17.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb17.label + "%\"";
-	if(cb18.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb18.label + "%\"";
-	if(cb19.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb19.label + "%\"";		
-	if(cb20.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb20.label + "%\"";	
-	if(cb21.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb21.label + "%\"";
-	if(cb22.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb22.label + "%\"";
-	if(cb23.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb23.label + "%\"";
-	if(cb24.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb24.label + "%\"";
-	if(cb25.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb25.label + "%\"";
-	if(cb26.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb26.label + "%\"";
-	if(cb27.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb27.label + "%\"";
-	if(cb28.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb28.label + "%\"";
-	if(cb29.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb29.label + "%\"";		
-	if(cb30.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb30.label + "%\"";		
-	selected_questions = """SELECT * FROM "main"."examquestions" WHERE """ + buffer.offset(3);
-	//printerr ("SQL output: %s\n", selected_questions);
+	int test = entry1.text.length;
+	if(test>=1){
+		buffer = buffer + " OR elnum LIKE " + "\"" + entry1.text + "%\"";
+		selected_questions = """SELECT * FROM "main"."examquestions" WHERE """ + buffer.offset(3);
+	}
+	else{
+		if(cb1.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb1.label + "%\"";
+		if(cb2.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb2.label + "%\"";
+		if(cb3.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb3.label + "%\"";
+		if(cb4.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb4.label + "%\"";
+		if(cb5.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb5.label + "%\"";
+		if(cb6.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb6.label + "%\"";
+		if(cb7.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb7.label + "%\"";
+		if(cb8.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb8.label + "%\"";
+		if(cb9.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb9.label + "%\"";		
+		if(cb10.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb10.label + "%\"";		
+		if(cb11.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb11.label + "%\"";
+		if(cb12.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb12.label + "%\"";
+		if(cb13.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb13.label + "%\"";
+		if(cb14.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb14.label + "%\"";
+		if(cb15.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb15.label + "%\"";
+		if(cb16.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb16.label + "%\"";
+		if(cb17.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb17.label + "%\"";
+		if(cb18.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb18.label + "%\"";
+		if(cb19.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb19.label + "%\"";		
+		if(cb20.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb20.label + "%\"";	
+		if(cb21.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb21.label + "%\"";
+		if(cb22.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb22.label + "%\"";
+		if(cb23.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb23.label + "%\"";
+		if(cb24.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb24.label + "%\"";
+		if(cb25.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb25.label + "%\"";
+		if(cb26.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb26.label + "%\"";
+		if(cb27.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb27.label + "%\"";
+		if(cb28.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb28.label + "%\"";
+		if(cb29.active) buffer = buffer + " OR elnum LIKE " + "\"" + cb29.label + "%\"";		
+		if(cb30.active) buffer= buffer + " OR elnum LIKE " + "\"" + cb30.label + "%\"";		
+		selected_questions = """SELECT * FROM "main"."examquestions" WHERE """ + buffer.offset(3);
+		//printerr ("SQL output: %s\n", selected_questions);
+	}
 }
 
 public void on_togglebutton_toggled (ToggleButton source) {
