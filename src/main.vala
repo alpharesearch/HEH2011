@@ -121,6 +121,8 @@ public void next_question () {
 public void select_questions () {
 	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
     statusbar1.push(0,"Loading... WAIT");
+    color_checkmark();
+    
 	//get list of IDs from slected questions
 	create_selected_questions ();
 	//sort so that if multible lessions are selected it goes changes...

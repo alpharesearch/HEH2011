@@ -227,3 +227,26 @@ var cb30 = builder.get_object ("checkbutton30") as CheckButton;
    	}
 
 }
+public void color_checkmark () {
+	CheckButton[] cb;
+	cb.length = 31
+	for (int i=1; i<= 30;i++) {
+	var cb1 = builder.get_object ("checkbutton") as CheckButton;
+	}
+
+	Gdk.Color red;
+	Gdk.Color.parse("red", out red);
+	Gdk.Color blue;
+	Gdk.Color.parse("blue", out blue);
+	Gdk.Color green;
+	Gdk.Color.parse("green", out green);
+	string[] classe = {"T", "G", "E"};
+	foreach(string pool in classe){
+		for (int i=0; i<= 9;i++) {
+			string buff = pool + i.to_string();
+			int[] test = create_stats_for_bar(buff);
+	    }
+    }
+	
+	cb2.modify_base(StateType.NORMAL, blue);
+}
