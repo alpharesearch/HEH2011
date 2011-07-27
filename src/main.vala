@@ -111,6 +111,7 @@ public void check_answer (int myanswer) {
 }
 
 public void next_question () {
+	if(non_selected) return;
 	if(listg_index==-1 || listg_index>=listg.size) select_questions ();
 	cont_next_question(listg[listg_index++]);
 	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
@@ -122,7 +123,7 @@ public void select_questions () {
 	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
     statusbar1.push(0,"Loading... WAIT");
     color_checkmark();
-    
+    if(non_selected) return;
 	//get list of IDs from slected questions
 	create_selected_questions ();
 	//sort so that if multible lessions are selected it goes changes...
@@ -508,9 +509,11 @@ int main (string[] args) {
         window.show_all ();
         statusbar1 = builder.get_object ("statusbar1") as Statusbar;
         statusbar1.push(0,"Loading DB...");
-        var cb1 = builder.get_object ("checkbutton1") as CheckButton;
-        cb1.active = true;
+        //var cb1 = builder.get_object ("checkbutton1") as CheckButton;
+        //cb1.active = true;
+        non_selected=true;
         update_bar_gfx();
+        color_checkmark ();
         next_question ();
         Gtk.main ();
         

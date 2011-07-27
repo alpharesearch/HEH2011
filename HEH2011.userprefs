@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/button.vala" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/main.vala" ctype="Workbench">
     <Files>
-      <File FileName="src/main.vala" Line="276" Column="7" />
-      <File FileName="src/button.vala" Line="232" Column="16" />
-      <File FileName="src/indicator.vala" Line="20" Column="34" />
+      <File FileName="src/main.vala" Line="516" Column="28" />
+      <File FileName="src/button.vala" Line="273" Column="31" />
+      <File FileName="src/indicator.vala" Line="51" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

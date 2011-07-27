@@ -31,18 +31,21 @@ public void on_button5_clicked (Button source) {
 }
 
 int radiobutton;
+bool non_selected;
 // OK
 public void on_button6_clicked (Button source) {
-	var radiobutton1 = builder.get_object ("radiobutton1") as RadioButton;
-	var radiobutton2 = builder.get_object ("radiobutton2") as RadioButton;
-	var radiobutton3 = builder.get_object ("radiobutton3") as RadioButton;
-	if(radiobutton1.active) radiobutton = 0; // eval
-	if(radiobutton2.active) radiobutton = 1; // study
-	if(radiobutton3.active) radiobutton = 2; // test
-	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
-    statusbar1.push(0,"Loading... WAIT");
-	select_questions ();
-	next_question ();
+	on_togglebutton_toggled2();
+		//stderr.printf("!non_selected");
+		var radiobutton1 = builder.get_object ("radiobutton1") as RadioButton;
+		var radiobutton2 = builder.get_object ("radiobutton2") as RadioButton;
+		var radiobutton3 = builder.get_object ("radiobutton3") as RadioButton;
+		if(radiobutton1.active) radiobutton = 0; // eval
+		if(radiobutton2.active) radiobutton = 1; // study
+		if(radiobutton3.active) radiobutton = 2; // test
+		statusbar1 = builder.get_object ("statusbar1") as Statusbar;
+	    statusbar1.push(0,"Loading... WAIT");
+		select_questions ();
+		next_question ();
 }
 
 public void create_selected_questions () {
@@ -190,6 +193,48 @@ var cb30 = builder.get_object ("checkbutton30") as CheckButton;
 		cb29.active  = tb3.active; 
 		cb30.active  = tb3.active; 		
 	}
+
+	on_togglebutton_toggled2();
+}
+
+public void on_togglebutton_toggled2 () {
+non_selected=false;
+
+var tb1 = builder.get_object ("togglebutton1") as ToggleButton;
+var tb2 = builder.get_object ("togglebutton2") as ToggleButton;
+var tb3 = builder.get_object ("togglebutton3") as ToggleButton;
+var cb1 = builder.get_object ("checkbutton1") as CheckButton;
+var cb2 = builder.get_object ("checkbutton2") as CheckButton;
+var cb3 = builder.get_object ("checkbutton3") as CheckButton;
+var cb4 = builder.get_object ("checkbutton4") as CheckButton;
+var cb5 = builder.get_object ("checkbutton5") as CheckButton;
+var cb6 = builder.get_object ("checkbutton6") as CheckButton;
+var cb7 = builder.get_object ("checkbutton7") as CheckButton;
+var cb8 = builder.get_object ("checkbutton8") as CheckButton;
+var cb9 = builder.get_object ("checkbutton9") as CheckButton;
+var cb10 = builder.get_object ("checkbutton10") as CheckButton;
+var cb11 = builder.get_object ("checkbutton11") as CheckButton;
+var cb12 = builder.get_object ("checkbutton12") as CheckButton;
+var cb13 = builder.get_object ("checkbutton13") as CheckButton;
+var cb14 = builder.get_object ("checkbutton14") as CheckButton;
+var cb15 = builder.get_object ("checkbutton15") as CheckButton;
+var cb16 = builder.get_object ("checkbutton16") as CheckButton;
+var cb17 = builder.get_object ("checkbutton17") as CheckButton;
+var cb18 = builder.get_object ("checkbutton18") as CheckButton;
+var cb19 = builder.get_object ("checkbutton19") as CheckButton;
+var cb20 = builder.get_object ("checkbutton20") as CheckButton;
+var cb21 = builder.get_object ("checkbutton21") as CheckButton;
+var cb22 = builder.get_object ("checkbutton22") as CheckButton;
+var cb23 = builder.get_object ("checkbutton23") as CheckButton;
+var cb24 = builder.get_object ("checkbutton24") as CheckButton;
+var cb25 = builder.get_object ("checkbutton25") as CheckButton;
+var cb26 = builder.get_object ("checkbutton26") as CheckButton;
+var cb27 = builder.get_object ("checkbutton27") as CheckButton;
+var cb28 = builder.get_object ("checkbutton28") as CheckButton;
+var cb29 = builder.get_object ("checkbutton29") as CheckButton;
+var cb30 = builder.get_object ("checkbutton30") as CheckButton;
+
+
 	if(cb1.active==false&&
 	   cb2.active==false&&
 	   cb3.active==false&&
@@ -219,34 +264,53 @@ var cb30 = builder.get_object ("checkbutton30") as CheckButton;
 	   cb27.active==false&&
 	   cb28.active==false&&
 	   cb29.active==false&&
-	   cb30.active==false)  {
-	   if(source.label=="Technician Class") cb1.active=true;
-	   else if(source.label=="General Class") cb11.active=true;
-	   else if(source.label=="Extra Class") cb21.active=true;
-	   else cb1.active=true;
+	   cb30.active==false) {
+	   	non_selected=true;
+	   	//stderr.printf("set non_selected");
    	}
-
 }
-public void color_checkmark () {
-	CheckButton[] cb;
-	cb.length = 31
-	for (int i=1; i<= 30;i++) {
-	var cb1 = builder.get_object ("checkbutton") as CheckButton;
-	}
 
+public void color_checkmark () {
+	Gdk.Color white;
+	Gdk.Color.parse("white", out white);
 	Gdk.Color red;
 	Gdk.Color.parse("red", out red);
 	Gdk.Color blue;
 	Gdk.Color.parse("blue", out blue);
+	Gdk.Color skyblue;
+	Gdk.Color.parse("skyblue", out skyblue);
 	Gdk.Color green;
 	Gdk.Color.parse("green", out green);
-	string[] classe = {"T", "G", "E"};
-	foreach(string pool in classe){
-		for (int i=0; i<= 9;i++) {
-			string buff = pool + i.to_string();
-			int[] test = create_stats_for_bar(buff);
-	    }
-    }
+
+	CheckButton cbt[31];
+	for (int i=1; i<= 30;i++) {
+	cbt[i-1] = builder.get_object ("checkbutton"+i.to_string()) as CheckButton;
+	}
+	string search="";
 	
-	cb2.modify_base(StateType.NORMAL, blue);
+	for (int i=0, ii=1; i<= 29;i++) {
+		if(i==9) ii=0;
+		if(i>=0 && i<=9) search="T"+ii.to_string();
+		
+		if(i==19) ii=0;
+		if(i>=10 && i<=19) search="G"+ii.to_string();
+		
+		if(i==29) ii=0;
+		if(i>=20 && i<=29) search="E"+ii.to_string();
+		
+		int[] stats = create_stats_for_bar(search+"%");
+	//                                          white     red       green      blue
+	//                                          all       faild    learnd    reinfoce
+	//stderr.printf ("BAR: %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
+		
+		if(stats[1]+stats[2]+stats[3] == 0) cbt[i].modify_base(StateType.NORMAL, white);
+		  else if(stats[2] > ((stats[0]+stats[1]+stats[2]+stats[3])*0.9)) cbt[i].modify_base(StateType.NORMAL, green);
+		   else if(stats[1] > stats[0]+stats[2]+stats[3]) cbt[i].modify_base(StateType.NORMAL, red);  
+			else if(stats[3] > stats[0]+stats[2]+stats[1]) cbt[i].modify_base(StateType.NORMAL, blue);
+			 else cbt[i].modify_base(StateType.NORMAL, skyblue);
+		
+		ii++;
+	}
+	
+	
 }
