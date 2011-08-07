@@ -36,6 +36,13 @@ bool non_selected;
 public void on_button6_clicked (Button source) {
 	on_togglebutton_toggled2();
 		//stderr.printf("!non_selected");
+		
+		var entry1 = builder.get_object ("entry1") as Entry;
+		string buffer="";
+		int test = entry1.text.length;
+		if(test>=1){
+			non_selected = false;
+		} 
 		var radiobutton1 = builder.get_object ("radiobutton1") as RadioButton;
 		var radiobutton2 = builder.get_object ("radiobutton2") as RadioButton;
 		var radiobutton3 = builder.get_object ("radiobutton3") as RadioButton;
