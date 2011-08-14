@@ -94,7 +94,9 @@ public void check_answer (int myanswer) {
     	stats[2]=1;
     }
     
-    set_stats(Q_ID, stats);
+    if(radiobutton!=3) set_stats(Q_ID, stats);
+
+
     
 	cols2++;
     var labe14 = builder.get_object ("label4") as Label;
@@ -267,7 +269,7 @@ public void put_all_questions_in_list () {
 	    printerr ("mysize %i \n", mysize);
     }
     //test TODO
-    if(radiobutton==2) {
+    if(radiobutton==2||radiobutton==3) {
 	    int tempint,j;
 	    for (int i=(list_temp.size-1); i>= 1;i--) {
 		    j = Random.int_range (0, i);
@@ -365,119 +367,129 @@ public void set_text (string el, string q, string k, string d1, string d2, strin
 	var image1 = builder.get_object ("image1") as Gtk.Image;
 	image1.set_from_stock("", IconSize.BUTTON);
 	labe11.label = q;
-	switch (Random.int_range (1, 17)) {
-	case 1:
-		button1.label = "A. "+k;
-		button2.label = "B. "+d1;
-		button3.label = "C. "+d2;
-		button4.label = "D. "+d3;
+	if(radiobutton==3){
+		button1.label = k;
+		button2.label = "";
+		button3.label = "";
+		button4.label = "";
 		answerg = 1;
-		break;
-	case 2:
-		button1.label = "A. "+d1;
-		button2.label = "B. "+k;
-		button3.label = "C. "+d2;
-		button4.label = "D. "+d3;
-		answerg = 2;
-		break;
-	case 3:
-		button1.label = "A. "+d1;
-		button2.label = "B. "+d2;
-		button3.label = "C. "+k;
-		button4.label = "D. "+d3;
-		answerg = 3;
-		break;
-	case 4:
-		button1.label = "A. "+d1;
-		button2.label = "B. "+d2;
-		button3.label = "C. "+d3;
-		button4.label = "D. "+k;
-		answerg = 4;
-		break;
-	case 5:
-		button1.label = "A. "+k;
-		button2.label = "B. "+d3;
-		button3.label = "C. "+d2;
-		button4.label = "D. "+d1;
-		answerg = 1;
-		break;
-	case 6:
-		button1.label = "A. "+d3;
-		button2.label = "B. "+k;
-		button3.label = "C. "+d2;
-		button4.label = "D. "+d1;
-		answerg = 2;
-		break;
-	case 7:
-		button1.label = "A. "+d3;
-		button2.label = "B. "+d2;
-		button3.label = "C. "+k;
-		button4.label = "D. "+d1;
-		answerg = 3;
-		break;
-	case 8:
-		button1.label = "A. "+d3;
-		button2.label = "B. "+d2;
-		button3.label = "C. "+d1;
-		button4.label = "D. "+k;
-		answerg = 4;
-		break;
-	case 9:
-		button1.label = "A. "+k;
-		button2.label = "B. "+d3;
-		button3.label = "C. "+d1;
-		button4.label = "D. "+d2;
-		answerg = 1;
-		break;
-	case 10:
-		button1.label = "A. "+d3;
-		button2.label = "B. "+k;
-		button3.label = "C. "+d1;
-		button4.label = "D. "+d2;
-		answerg = 2;
-		break;
-	case 11:
-		button1.label = "A. "+d3;
-		button2.label = "B. "+d1;
-		button3.label = "C. "+k;
-		button4.label = "D. "+d2;
-		answerg = 3;
-		break;
-	case 12:
-		button1.label = "A. "+d3;
-		button2.label = "B. "+d2;
-		button3.label = "C. "+d1;
-		button4.label = "D. "+k;
-		answerg = 4;
-		break;
-	case 13:
-		button1.label = "A. "+k;
-		button2.label = "B. "+d2;
-		button3.label = "C. "+d3;
-		button4.label = "D. "+d1;
-		answerg = 1;
-		break;
-	case 14:
-		button1.label = "A. "+d2;
-		button2.label = "B. "+k;
-		button3.label = "C. "+d3;
-		button4.label = "D. "+d1;
-		answerg = 2;
-		break;
-	case 15:
-		button1.label = "A. "+d2;
-		button2.label = "B. "+d3;
-		button3.label = "C. "+k;
-		button4.label = "D. "+d1;
-		answerg = 3;
-		break;
-	case 16:
-		button1.label = "A. "+d2;
-		button2.label = "B. "+d1;
-		button3.label = "C. "+d3;
-		button4.label = "D. "+k;
-		answerg = 4;
-		break;
+	}
+	else{
+		
+		switch (Random.int_range (1, 17)) {
+		case 1:
+			button1.label = "A. "+k;
+			button2.label = "B. "+d1;
+			button3.label = "C. "+d2;
+			button4.label = "D. "+d3;
+			answerg = 1;
+			break;
+		case 2:
+			button1.label = "A. "+d1;
+			button2.label = "B. "+k;
+			button3.label = "C. "+d2;
+			button4.label = "D. "+d3;
+			answerg = 2;
+			break;
+		case 3:
+			button1.label = "A. "+d1;
+			button2.label = "B. "+d2;
+			button3.label = "C. "+k;
+			button4.label = "D. "+d3;
+			answerg = 3;
+			break;
+		case 4:
+			button1.label = "A. "+d1;
+			button2.label = "B. "+d2;
+			button3.label = "C. "+d3;
+			button4.label = "D. "+k;
+			answerg = 4;
+			break;
+		case 5:
+			button1.label = "A. "+k;
+			button2.label = "B. "+d3;
+			button3.label = "C. "+d2;
+			button4.label = "D. "+d1;
+			answerg = 1;
+			break;
+		case 6:
+			button1.label = "A. "+d3;
+			button2.label = "B. "+k;
+			button3.label = "C. "+d2;
+			button4.label = "D. "+d1;
+			answerg = 2;
+			break;
+		case 7:
+			button1.label = "A. "+d3;
+			button2.label = "B. "+d2;
+			button3.label = "C. "+k;
+			button4.label = "D. "+d1;
+			answerg = 3;
+			break;
+		case 8:
+			button1.label = "A. "+d3;
+			button2.label = "B. "+d2;
+			button3.label = "C. "+d1;
+			button4.label = "D. "+k;
+			answerg = 4;
+			break;
+		case 9:
+			button1.label = "A. "+k;
+			button2.label = "B. "+d3;
+			button3.label = "C. "+d1;
+			button4.label = "D. "+d2;
+			answerg = 1;
+			break;
+		case 10:
+			button1.label = "A. "+d3;
+			button2.label = "B. "+k;
+			button3.label = "C. "+d1;
+			button4.label = "D. "+d2;
+			answerg = 2;
+			break;
+		case 11:
+			button1.label = "A. "+d3;
+			button2.label = "B. "+d1;
+			button3.label = "C. "+k;
+			button4.label = "D. "+d2;
+			answerg = 3;
+			break;
+		case 12:
+			button1.label = "A. "+d3;
+			button2.label = "B. "+d2;
+			button3.label = "C. "+d1;
+			button4.label = "D. "+k;
+			answerg = 4;
+			break;
+		case 13:
+			button1.label = "A. "+k;
+			button2.label = "B. "+d2;
+			button3.label = "C. "+d3;
+			button4.label = "D. "+d1;
+			answerg = 1;
+			break;
+		case 14:
+			button1.label = "A. "+d2;
+			button2.label = "B. "+k;
+			button3.label = "C. "+d3;
+			button4.label = "D. "+d1;
+			answerg = 2;
+			break;
+		case 15:
+			button1.label = "A. "+d2;
+			button2.label = "B. "+d3;
+			button3.label = "C. "+k;
+			button4.label = "D. "+d1;
+			answerg = 3;
+			break;
+		case 16:
+			button1.label = "A. "+d2;
+			button2.label = "B. "+d1;
+			button3.label = "C. "+d3;
+			button4.label = "D. "+k;
+			answerg = 4;
+			break;
+		}
 	}
 	
 	labe12.label = qg;

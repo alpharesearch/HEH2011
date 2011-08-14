@@ -46,9 +46,11 @@ public void on_button6_clicked (Button source) {
 		var radiobutton1 = builder.get_object ("radiobutton1") as RadioButton;
 		var radiobutton2 = builder.get_object ("radiobutton2") as RadioButton;
 		var radiobutton3 = builder.get_object ("radiobutton3") as RadioButton;
+		var radiobutton4 = builder.get_object ("radiobutton4") as RadioButton;
 		if(radiobutton1.active) radiobutton = 0; // eval
 		if(radiobutton2.active) radiobutton = 1; // study
 		if(radiobutton3.active) radiobutton = 2; // test
+		if(radiobutton4.active) radiobutton = 3; // read
 		statusbar1 = builder.get_object ("statusbar1") as Statusbar;
 	    statusbar1.push(0,"Loading... WAIT");
 		select_questions ();
