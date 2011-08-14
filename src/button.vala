@@ -26,8 +26,13 @@ public void on_button4_clicked (Button source) {
 
 // skip
 public void on_button5_clicked (Button source) {
-    check_answer(0);
-    next_question ();
+    if(Q_ID==0){
+	    
+    }
+    else {
+	    check_answer(0);
+	    next_question ();
+    }
 }
 
 int radiobutton;
