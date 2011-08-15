@@ -2,6 +2,8 @@
 /build
 .waf*
 .lock-wscript
-importer/testdb
+HEH2011.userprefs
+/importer/testdb
 src/hamdb
 /importer/hamdb
+/importer/HEH2011

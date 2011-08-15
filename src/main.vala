@@ -77,6 +77,7 @@ public void check_answer (int myanswer) {
 		labe16.label = "Wrong!";
 	}
     int64[4] stats = get_stats(Q_ID);
+    var mytime = new DateTime.from_unix_utc (stats[3]);
     stats[0]++; //add to tries
 
 	if(OK){ 
