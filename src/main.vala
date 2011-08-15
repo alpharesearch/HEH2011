@@ -27,27 +27,33 @@ enum st {
 
 public int64[] get_stats(int ID){
 	int rc; 
-	string a="0",b="0",c="0",d="0";
+	string a="0",b="0",c="0",d="0",e="0",f="0",g="0";
 	string buff = """SELECT * FROM "main"."stats" WHERE "ID" LIKE """ + @"$ID";
 	rc = db.exec(buff, (n_columns, values, column_names) => {
     	a = values[1];
     	b = values[2];
     	c = values[3];
     	d = values[4];
+    	e = values[5];
+    	f = values[6];
+    	g = values[7];
         return 0;
     }, null);
-    int64[] rbuff = new int64[4];
+    int64[] rbuff = new int64[7];
     rbuff[0] = int64.parse(a);
     rbuff[1] = int64.parse(b);
     rbuff[2] = int64.parse(c);
     rbuff[3] = int64.parse(d);
+    rbuff[4] = int64.parse(e);
+    rbuff[5] = int64.parse(f);
+    rbuff[6] = int64.parse(g);
     return rbuff;
 }
 
 public void set_stats(int ID, int64[] stats){
 	int rc; 
-    int64 a=stats[0],b=stats[1],c=stats[2],d=stats[3];
-    string dbstr = """REPLACE INTO stats ("ID","tries","failed","learnd","time") VALUES (""" + @"$ID, $a, $b, $c, $d" +""")""";
+    int64 a=stats[0],b=stats[1],c=stats[2],d=stats[3],e=stats[4],f=stats[5],g=stats[6];
+    string dbstr = """REPLACE INTO stats ("ID","tries","failed","learnd","time","read","timei","interval") VALUES (""" + @"$ID, $a, $b, $c, $d, $e, $f, $g" +""")""";
 	rc = db.exec(dbstr, (n_columns, values, column_names) => {
 	for (int i = 0; i < n_columns; i++) {
 			stdout.printf ("%s = %s\n", column_names[i], values[i]);
@@ -76,8 +82,9 @@ public void check_answer (int myanswer) {
 		labe13.label = "";
 		labe16.label = "Wrong!";
 	}
-    int64[4] stats = get_stats(Q_ID);
+    int64[7] stats = get_stats(Q_ID);
     var mytime = new DateTime.from_unix_utc (stats[3]);
+    printerr ("Last time: %s\n", mytime.to_string());
     stats[0]++; //add to tries
 
 	if(OK){ 
@@ -98,6 +105,9 @@ public void check_answer (int myanswer) {
     }
     var time = new DateTime.now_local();
     stats[3] = time.to_unix();
+    stats[4]++;
+    stats[5] = time.to_unix();
+    stats[6]++;
     if(radiobutton!=3) set_stats(Q_ID, stats);
 
 
@@ -202,7 +212,7 @@ public void put_all_questions_in_list () {
     if(radiobutton==1) {    
 	    //sort into the different lists
 	    foreach (int i in list_temp) {
-	        int64[4] stats = get_stats(i);
+	        int64[7] stats = get_stats(i);
 	        if(stats[0] == 0) list_new.add(i);
 	        else if(stats[1] < 0) list_failed.add(i);
 	        	 else if(stats[2] > 2) list_learnd.add(i);
@@ -291,24 +301,24 @@ public void put_all_questions_in_list () {
 }
 
 public int compare_failed (int? a, int? b) { 
-	int64[4] stats_a = get_stats(a);
-	int64[4] stats_b = get_stats(b);
+	int64[7] stats_a = get_stats(a);
+	int64[7] stats_b = get_stats(b);
 	int64 x = stats_a[1];
 	int64 y = stats_b[1];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
 public int compare_learnd (int? a, int? b) { 
-	int64[4] stats_a = get_stats(a);
-	int64[4] stats_b = get_stats(b);
+	int64[7] stats_a = get_stats(a);
+	int64[7] stats_b = get_stats(b);
 	int64 x = stats_a[2];
 	int64 y = stats_b[2];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
 public int compare_reinforce (int? a, int? b) { 
-	int64[4] stats_a = get_stats(a);
-	int64[4] stats_b = get_stats(b);
+	int64[7] stats_a = get_stats(a);
+	int64[7] stats_b = get_stats(b);
 	int64 x = stats_a[2];
 	int64 y = stats_b[2];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);

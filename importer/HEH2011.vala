@@ -49,7 +49,10 @@ public class SqliteSample : GLib.Object {
     "tries" INTEGER,
     "failed" INTEGER,
     "learnd" INTEGER,
-    "time" INTEGER
+    "time" INTEGER,
+    "read" INTEGER,
+    "timei" INTEGER,
+    "interval" INTEGER
 )""";
 
 		string viewt ="""CREATE VIEW "T" AS SELECT * FROM "main"."examquestions" WHERE  elnum LIKE "T%"""";
@@ -161,7 +164,7 @@ int counter=0;
 				}
 			}
 			
-			string dbstr = """INSERT INTO "stats" ("tries","failed","learnd","time") VALUES (0,0,0,0)""";
+			string dbstr = """INSERT INTO "stats" ("tries","failed","learnd","time","read","timei","interval") VALUES (0,0,0,0,0,0,0)""";
 				rc = db.exec(dbstr, (n_columns, values, column_names) => {
 				for (int i = 0; i < n_columns; i++) {
 					stdout.printf ("%s = %s\n", column_names[i], values[i]);
