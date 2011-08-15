@@ -25,27 +25,29 @@ enum st {
  LEARND,
 }
 
-public int[] get_stats(int ID){
+public int64[] get_stats(int ID){
 	int rc; 
-	string a="0",b="0",c="0";
+	string a="0",b="0",c="0",d="0";
 	string buff = """SELECT * FROM "main"."stats" WHERE "ID" LIKE """ + @"$ID";
 	rc = db.exec(buff, (n_columns, values, column_names) => {
     	a = values[1];
     	b = values[2];
     	c = values[3];
+    	d = values[4];
         return 0;
     }, null);
-    int[] rbuff = new int[3];
-    rbuff[0] = int.parse(a);
-    rbuff[1] = int.parse(b);
-    rbuff[2] = int.parse(c);
+    int64[] rbuff = new int64[4];
+    rbuff[0] = int64.parse(a);
+    rbuff[1] = int64.parse(b);
+    rbuff[2] = int64.parse(c);
+    rbuff[3] = int64.parse(d);
     return rbuff;
 }
 
-public void set_stats(int ID, int[] stats){
+public void set_stats(int ID, int64[] stats){
 	int rc; 
-    int a=stats[0],b=stats[1],c=stats[2];
-    string dbstr = """INSERT OR REPLACE INTO stats ("ID","tries","failed","learnd") VALUES (""" + @"$ID, $a, $b, $c" +""")""";
+    int64 a=stats[0],b=stats[1],c=stats[2],d=stats[3];
+    string dbstr = """REPLACE INTO stats ("ID","tries","failed","learnd","time") VALUES (""" + @"$ID, $a, $b, $c, $d" +""")""";
 	rc = db.exec(dbstr, (n_columns, values, column_names) => {
 	for (int i = 0; i < n_columns; i++) {
 			stdout.printf ("%s = %s\n", column_names[i], values[i]);
@@ -74,7 +76,7 @@ public void check_answer (int myanswer) {
 		labe13.label = "";
 		labe16.label = "Wrong!";
 	}
-    int[3] stats = get_stats(Q_ID);
+    int64[4] stats = get_stats(Q_ID);
     stats[0]++; //add to tries
 
 	if(OK){ 
@@ -93,7 +95,8 @@ public void check_answer (int myanswer) {
     	stats[1]=3;
     	stats[2]=1;
     }
-    
+    var time = new DateTime.now_local();
+    stats[3] = time.to_unix();
     if(radiobutton!=3) set_stats(Q_ID, stats);
 
 
@@ -135,6 +138,8 @@ public void select_questions () {
 	//short the list
 	//keep track of wrong answerd and put back in list
 	//keep track of right answerd and put back in list the reinforce
+	//I'm thinking to use some of Pimsleur's graduated-interval recall times as well:
+	//The intervals published in his paper were: 5 seconds, 25 seconds, 2 minutes, 10 minutes, 1 hour, 5 hours, 1 day, 5 days, 25 days, (stop here for our purpose)4 months, 2 years.
 	put_all_questions_in_list();
 }
 
@@ -196,7 +201,7 @@ public void put_all_questions_in_list () {
     if(radiobutton==1) {    
 	    //sort into the different lists
 	    foreach (int i in list_temp) {
-	        int[3] stats = get_stats(i);
+	        int64[4] stats = get_stats(i);
 	        if(stats[0] == 0) list_new.add(i);
 	        else if(stats[1] < 0) list_failed.add(i);
 	        	 else if(stats[2] > 2) list_learnd.add(i);
@@ -285,26 +290,26 @@ public void put_all_questions_in_list () {
 }
 
 public int compare_failed (int? a, int? b) { 
-	int[3] stats_a = get_stats(a);
-	int[3] stats_b = get_stats(b);
-	int x = stats_a[1];
-	int y = stats_b[1];
+	int64[4] stats_a = get_stats(a);
+	int64[4] stats_b = get_stats(b);
+	int64 x = stats_a[1];
+	int64 y = stats_b[1];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
 public int compare_learnd (int? a, int? b) { 
-	int[3] stats_a = get_stats(a);
-	int[3] stats_b = get_stats(b);
-	int x = stats_a[2];
-	int y = stats_b[2];
+	int64[4] stats_a = get_stats(a);
+	int64[4] stats_b = get_stats(b);
+	int64 x = stats_a[2];
+	int64 y = stats_b[2];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
 public int compare_reinforce (int? a, int? b) { 
-	int[3] stats_a = get_stats(a);
-	int[3] stats_b = get_stats(b);
-	int x = stats_a[2];
-	int y = stats_b[2];
+	int64[4] stats_a = get_stats(a);
+	int64[4] stats_b = get_stats(b);
+	int64 x = stats_a[2];
+	int64 y = stats_b[2];
 	return (x < y) ? -1 : ((y < x) ? 1 : 0);
 }
 
