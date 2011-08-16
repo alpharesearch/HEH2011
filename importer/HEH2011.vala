@@ -88,7 +88,22 @@ public class SqliteSample : GLib.Object {
         stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
         return 1;
     }
+		{
+			string dbstr = """INSERT INTO examquestions ("ID","elnum","FCC","stem","key","distractor1","distractor2","distractor3") VALUES (0,"HAM","non","No Question found","Right","Wrong","Wrong","Wrong")""";
+			rc = db.exec(dbstr, (n_columns, values, column_names) => {
+			for (int i = 0; i < n_columns; i++) {
+				stdout.printf ("%s = %s\n", column_names[i], values[i]);
+			}
+			stdout.printf ("\n");
 
+			return 0;
+			}, null);
+
+			if (rc != Sqlite.OK) { 
+				stderr.printf ("SQL error: %d, %s\n", rc, db.errmsg ());
+				stderr.printf(dbstr + "\n");
+			}
+		}
 Regex tRegEx = /~~~/;
 Regex regtest = /(^(T|G|E)\d[a-zA-Z]\d\d)*.\(([A-D])\)(.*)/;
 Regex filereg = /figure\s([TGE0-9-]*)(\s|\?|,)/i;
@@ -180,7 +195,7 @@ int counter=0;
 				}
 			
 			}
-        }
+        }    
     } catch (Error e) {
         error ("%s", e.message);
     }

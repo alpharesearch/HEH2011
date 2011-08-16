@@ -83,8 +83,8 @@ public void check_answer (int myanswer) {
 		labe16.label = "Wrong!";
 	}
     int64[7] stats = get_stats(Q_ID);
-    var mytime = new DateTime.from_unix_utc (stats[3]);
-    printerr ("Last time: %s\n", mytime.to_string());
+    //var mytime = new DateTime.from_unix_utc (stats[3]);
+    //printerr ("Last time: %s\n", mytime.to_string());
     stats[0]++; //add to tries
 
 	if(OK){ 
@@ -198,7 +198,7 @@ public void put_all_questions_in_list () {
         }
     } while (rc == Sqlite.ROW);
     
-    if(list_temp.size==0) list_temp.add(1);
+    if(list_temp.size==0) list_temp.add(0);
     
     //eval
     if(radiobutton==0) {
@@ -284,8 +284,8 @@ public void put_all_questions_in_list () {
 	    }
 	    printerr ("mysize %i \n", mysize);
     }
-    //test TODO
-    if(radiobutton==2||radiobutton==3) {
+    //just random list
+    if(radiobutton==2) {
 	    int tempint,j;
 	    for (int i=(list_temp.size-1); i>= 1;i--) {
 		    j = Random.int_range (0, i);
@@ -296,6 +296,27 @@ public void put_all_questions_in_list () {
 	    foreach ( int i in list_temp ) {
 	    	listg.add(i);
 	    	printerr ("random %i - %s\n", i, get_elnum(i));
+	  	}
+    }
+    //read and interval is time based
+	if(radiobutton==3||radiobutton==4) {
+		int tempint,j;
+	    for (int i=(list_temp.size-1); i>= 1;i--) {
+		    j = Random.int_range (0, i);
+	    	tempint = list_temp[j];
+	    	list_temp[j] = list_temp[i];
+	    	list_temp[i] = tempint;
+	    }
+	    foreach ( int i in list_temp ) {
+		    bool add = false;
+		    int64[7] stats = get_stats(i);
+		    var time = new DateTime.from_unix_utc (stats[3]);
+	    	if(stats[4]==0) add = true;
+	    	
+		    if(add){
+	    		listg.add(i);
+	    		printerr ("interval %i - %s\n", i, get_elnum(i));
+    		}
 	  	}
     }
 }
