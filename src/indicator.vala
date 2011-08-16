@@ -19,24 +19,53 @@ public void update_bar_gfx () {
 
 public int[] create_stats_for_bar(string pool){
 	int rc; 
-	int[] rbuff = new int[4];
-	rbuff[0] = 0;
-    rbuff[1] = 0;
-    rbuff[2] = 0;
-    rbuff[3] = 0;
-	string a="0",b="0",c="0";
+	int[] rbuff = new int[7];
+	rbuff[0] = 0; //big new
+    rbuff[1] = 0; // failed
+    rbuff[2] = 0; //learnd
+    rbuff[3] = 0; //reinforce
+    rbuff[4] = 0; // small new
+    rbuff[5] = 0; // needs reading
+    rbuff[6] = 0; // no yet
+    var vlocal_time = new DateTime.now_local();
+	int64 local_time = vlocal_time.to_unix();
+	string a="0",b="0",c="0",t="0",d="0";
 	string buff = """SELECT * FROM "main"."stats" JOIN "main"."examquestions" ON examquestions.ID=stats.ID WHERE "elnum" LIKE """ + @"\"$pool\""; 
 	rc = db.exec(buff, (n_columns, values, column_names) => {
     	a = values[1]; //tries
     	b = values[2]; //fail
     	c = values[3]; //learnd
+    	t = values[4]; //time
+    	d = values[5]; //read
     	int aa = int.parse(a);
     	int bb =  int.parse(b);
-    	int cc =  int.parse(c);    	
+    	int cc =  int.parse(c);
+    	int64 tt =  int64.parse(t);  
+    	int dd =  int.parse(d);   	
     	if(aa == 0) rbuff[0]++;//not touched, new
         else if(bb < 0) rbuff[1]++;//failed 
         	 else if(cc > 2) rbuff[2]++;//learnd
-        		  else rbuff[3]++; //reinforce 	
+        		  else rbuff[3]++; //reinforce
+        
+        bool add = false;
+        if(dd==1 && (local_time-tt)>5) add = true;
+    	if(dd==2 && (local_time-tt)>25) add = true;
+    	if(dd==3 && (local_time-tt)>120) add = true;
+    	if(dd==4 && (local_time-tt)>300) add = true;
+    	if(dd==5 && (local_time-tt)>800) add = true;
+    	if(dd==6 && (local_time-tt)>1800) add = true;
+    	if(dd==7 && (local_time-tt)>3600) add = true;
+    	if(dd==8 && (local_time-tt)>3600*2) add = true;
+    	if(dd==9 && (local_time-tt)>3600*24) add = true;
+    	if(dd==10 && (local_time-tt)>3600*24*2) add = true;
+    	if(dd==11 && (local_time-tt)>3600*24*7) add = true;
+    	if(dd==12 && (local_time-tt)>3600*24*14) add = true;
+        if(dd == 0) rbuff[4]++; 
+        //else if (dd < 9) rbuff[5]++;
+        //	 else rbuff[6]++; 
+        else if (add) rbuff[5]++;
+        	else rbuff[6]++; 
+        	
         return 0;
     }, null);
     return rbuff;
@@ -71,7 +100,7 @@ public void create_gfx_for_bar (Context cr, int[] stats) {
 
 	cr.set_line_width (30);
 	
-	//red
+	//big bar
 	cr.set_source_rgb (1, 0, 0);
     cr.move_to (10, red_start);
     cr.line_to (10, red_stop);
@@ -88,6 +117,37 @@ public void create_gfx_for_bar (Context cr, int[] stats) {
     cr.move_to (10, white_start);
     cr.line_to (10, white_stop);
     cr.stroke ();
+    
+    //start small bar
+    all = stats[4]+stats[5]+stats[6];
+    
+	blue   = Round((738.0 / (double) all) * (double) stats[5]);
+	green  = Round((738.0 / (double) all) * (double) stats[6]);
+	white  = Round((738.0 / (double) all) * (double) stats[4]);
+    
+	blue_start = 0;
+	blue_stop = blue;
+	green_start = blue + 1;
+	green_stop = blue + green;
+	white_start = blue + green +1;
+	white_stop = blue + green + white;
+    
+ 	cr.set_line_width (10);
+	
+	//small bar 
+	cr.set_source_rgb (0, 0, 1);
+    cr.move_to (20, blue_start);
+    cr.line_to (20, blue_stop);
+    cr.stroke ();    
+	cr.set_source_rgb (0, 1, 0);
+    cr.move_to (20, green_start);
+    cr.line_to (20, green_stop);
+    cr.stroke ();   
+	cr.set_source_rgb (1, 1, 1);
+    cr.move_to (20, white_start);
+    cr.line_to (20, white_stop);
+    cr.stroke ();
+    
     cr.clip ();
 }
 

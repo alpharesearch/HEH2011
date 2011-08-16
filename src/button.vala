@@ -318,12 +318,19 @@ public void color_checkmark () {
 	//                                          all       faild    learnd    reinfoce
 	//stderr.printf ("BAR: %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
 		
-		if(stats[1]+stats[2]+stats[3] == 0) cbt[i].modify_base(StateType.NORMAL, white);
-		  else if(stats[2] > ((stats[0]+stats[1]+stats[2]+stats[3])*0.9)) cbt[i].modify_base(StateType.NORMAL, green);
-		   else if(stats[1] > stats[0]+stats[2]+stats[3]) cbt[i].modify_base(StateType.NORMAL, red);  
-			else if(stats[3] > stats[0]+stats[2]+stats[1]) cbt[i].modify_base(StateType.NORMAL, blue);
-			 else cbt[i].modify_base(StateType.NORMAL, skyblue);
-		
+		if(radiobutton==0 || radiobutton==1 || radiobutton==2 || radiobutton==4){
+			if(stats[1]+stats[2]+stats[3] == 0) cbt[i].modify_base(StateType.NORMAL, white);
+			  else if(stats[2] > ((stats[0]+stats[1]+stats[2]+stats[3])*0.9)) cbt[i].modify_base(StateType.NORMAL, green);
+			   else if(stats[1] > stats[0]+stats[2]+stats[3]) cbt[i].modify_base(StateType.NORMAL, red);  
+				else if(stats[3] > stats[0]+stats[2]+stats[1]) cbt[i].modify_base(StateType.NORMAL, blue);
+				 else cbt[i].modify_base(StateType.NORMAL, skyblue);
+		}
+		else{
+			if(stats[5]+stats[6] == 0) cbt[i].modify_base(StateType.NORMAL, white);  
+			  else if(stats[5] > 0) cbt[i].modify_base(StateType.NORMAL, blue);
+				else if(stats[6] >= stats[5]+stats[4]) cbt[i].modify_base(StateType.NORMAL, green);
+				  else cbt[i].modify_base(StateType.NORMAL, skyblue);
+		}
 		ii++;
 	}
 	
