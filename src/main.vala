@@ -85,32 +85,42 @@ public void check_answer (int myanswer) {
     int64[7] stats = get_stats(Q_ID);
     //var mytime = new DateTime.from_unix_utc (stats[3]);
     //printerr ("Last time: %s\n", mytime.to_string());
-    stats[0]++; //add to tries
-
-	if(OK){ 
-    	if(stats[1]<-2) stats[1] = -1; // if he faild before and gets it right set to -1
-    		else stats[1]++; // if ok add one to fails
-    }
-    else{ 
-    	if(stats[1]>=0) stats[1] = -2; // for first time or if later fail set to -2
-    		else stats[1]--; // if not OK sub fails
+    if(radiobutton==0 || radiobutton==1 || radiobutton==2 || radiobutton==4){
+	    stats[0]++; //add to tries
+	
+		if(OK){ 
+	    	if(stats[1]<-2) stats[1] = -1; // if he faild before and gets it right set to -1
+	    		else stats[1]++; // if ok add one to fails
+	    }
+	    else{ 
+	    	if(stats[1]>=0) stats[1] = -2; // for first time or if later fail set to -2
+	    		else stats[1]--; // if not OK sub fails
+	    	stats[4]=0; //reset the read
+	    	stats[6]=0; //reset the interval 
+	    }
+	    
+	    if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
+	    
+	    if(radiobutton==0 && OK && stats[0]==1) {
+	    	stats[0]=3;
+	    	stats[1]=3;
+	    	stats[2]=1;
+    	}
     }
     
-    if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
-    
-    if(radiobutton==0 && OK && stats[0]==1) {
-    	stats[0]=3;
-    	stats[1]=3;
-    	stats[2]=1;
-    }
     var time = new DateTime.now_local();
-    stats[3] = time.to_unix();
-    stats[4]++;
-    stats[5] = time.to_unix();
-    stats[6]++;
-    if(radiobutton!=3) set_stats(Q_ID, stats);
-
-
+    if(radiobutton==3)
+    {
+	    stats[3] = time.to_unix();
+	    stats[4]++;
+    }
+    if(radiobutton==4)
+    {
+	    stats[5] = time.to_unix();
+	    stats[6]++;
+    }
+    
+    set_stats(Q_ID, stats);
     
 	cols2++;
     var labe14 = builder.get_object ("label4") as Label;
@@ -299,8 +309,11 @@ public void put_all_questions_in_list () {
 	  	}
     }
     //read and interval is time based
-	if(radiobutton==3||radiobutton==4) {
+	if(radiobutton==3) {
 		int tempint,j;
+		bool oneshot = true;
+		var vlocal_time = new DateTime.now_local();
+		int64 local_time = vlocal_time.to_unix();
 	    for (int i=(list_temp.size-1); i>= 1;i--) {
 		    j = Random.int_range (0, i);
 	    	tempint = list_temp[j];
@@ -309,15 +322,86 @@ public void put_all_questions_in_list () {
 	    }
 	    foreach ( int i in list_temp ) {
 		    bool add = false;
+		    bool addo = false;
 		    int64[7] stats = get_stats(i);
-		    var time = new DateTime.from_unix_utc (stats[3]);
-	    	if(stats[4]==0) add = true;
-	    	
-		    if(add){
+	    	if(stats[4]==0) addo = true;
+	    	//The intervals published in his paper were: 5 seconds, 25 seconds, 2 minutes 120, 10 minutes 600, 1 hour 3600, 5 hours 3600*5, 1 day 3600*24, 5 days 3600*24*5, 25 days 3600*24*25, (stop here for our purpose)4 months, 2 years.
+	
+	    	if(stats[4]==1 && (local_time-stats[3])>5) add = true;
+	    	if(stats[4]==2 && (local_time-stats[3])>25) add = true;
+	    	if(stats[4]==3 && (local_time-stats[3])>120) add = true;
+	    	if(stats[4]==4 && (local_time-stats[3])>300) add = true;
+	    	if(stats[4]==5 && (local_time-stats[3])>800) add = true;
+	    	if(stats[4]==6 && (local_time-stats[3])>1800) add = true;
+	    	if(stats[4]==7 && (local_time-stats[3])>3600) add = true;
+	    	if(stats[4]==8 && (local_time-stats[3])>3600*2) add = true;
+	    	if(stats[4]==9 && (local_time-stats[3])>3600*24) add = true;
+	    	if(stats[4]==10 && (local_time-stats[3])>3600*24*2) add = true;
+	    	if(stats[4]==11 && (local_time-stats[3])>3600*24*7) add = true;
+	    	if(stats[4]==12 && (local_time-stats[3])>3600*24*14) add = true;
+		    
+			if(addo && oneshot){
 	    		listg.add(i);
-	    		printerr ("interval %i - %s\n", i, get_elnum(i));
+	    		oneshot = false;
+	    		printerr ("one shoot new interval %i - %s\n", i, get_elnum(i));
+    		}
+    		if(add){
+	    		listg.add(i);
+	    		oneshot = false;
+	    		printerr ("interval %i - %s ", i, get_elnum(i));
+	    		printerr ("/ num: %lld / time: %lld\n", stats[4],local_time-stats[3]);
+	    	
     		}
 	  	}
+	  	if(listg.size==0)listg.add(0);
+	  	
+    }
+    if(radiobutton==4) {
+		int tempint,j;
+		bool oneshot = true;
+		var vlocal_time = new DateTime.now_local();
+		int64 local_time = vlocal_time.to_unix();
+	    for (int i=(list_temp.size-1); i>= 1;i--) {
+		    j = Random.int_range (0, i);
+	    	tempint = list_temp[j];
+	    	list_temp[j] = list_temp[i];
+	    	list_temp[i] = tempint;
+	    }
+	    foreach ( int i in list_temp ) {
+		    bool add = false;
+		    bool addo = false;
+		    int64[7] stats = get_stats(i);
+	    	if(stats[6]==0) addo = true;
+	    	//The intervals published in his paper were: 5 seconds, 25 seconds, 2 minutes 120, 10 minutes 600, 1 hour 3600, 5 hours 3600*5, 1 day 3600*24, 5 days 3600*24*5, 25 days 3600*24*25, (stop here for our purpose)4 months, 2 years.
+	
+	    	if(stats[6]==1 && (local_time-stats[5])>5) add = true;
+	    	if(stats[6]==2 && (local_time-stats[5])>25) add = true;
+	    	if(stats[6]==3 && (local_time-stats[5])>120) add = true;
+	    	if(stats[6]==4 && (local_time-stats[5])>300) add = true;
+	    	if(stats[6]==5 && (local_time-stats[5])>800) add = true;
+	    	if(stats[6]==6 && (local_time-stats[5])>1800) add = true;
+	    	if(stats[6]==7 && (local_time-stats[5])>3600) add = true;
+	    	if(stats[6]==8 && (local_time-stats[5])>3600*2) add = true;
+	    	if(stats[6]==9 && (local_time-stats[5])>3600*24) add = true;
+	    	if(stats[6]==10 && (local_time-stats[5])>3600*24*2) add = true;
+	    	if(stats[6]==11 && (local_time-stats[5])>3600*24*7) add = true;
+	    	if(stats[6]==12 && (local_time-stats[5])>3600*24*14) add = true;
+		    
+			if(addo && oneshot){
+	    		listg.add(i);
+	    		oneshot = false;
+	    		printerr ("one shoot new interval %i - %s\n", i, get_elnum(i));
+    		}
+    		if(add){
+	    		listg.add(i);
+	    		oneshot = false;
+	    		printerr ("interval %i - %s ", i, get_elnum(i));
+	    		printerr ("/ num: %lld / time: %lld\n", stats[6],local_time-stats[5]);	
+	    	
+    		}
+	  	}
+	  	if(listg.size==0)listg.add(0);
+	  	
     }
 }
 
