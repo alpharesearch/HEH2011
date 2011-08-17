@@ -18,6 +18,7 @@ string selected_questions;
 int answerg;
 ArrayList<int> listg;
 int listg_index;
+int listg_new_questions;
 
 enum st {
  TRIES,
@@ -126,11 +127,11 @@ public void check_answer (int myanswer) {
     var labe14 = builder.get_object ("label4") as Label;
     int count = listg.size;
 	if(OK) {
-        statusbar1.push(0,@"Good Job! Question $listg_index of $count");
+        statusbar1.push(0,@"Good Job! Question $listg_index of $count. $listg_new_questions new questions left in the query.");
         labe14.label = "You got it!";
     }
     else{ 
-        statusbar1.push(0,@"Wrong! Question $listg_index of $count");
+        statusbar1.push(0,@"Wrong! Question $listg_index of $count. $listg_new_questions new questions left in the query.");
         labe14.label = "Nice try!";
     }
     update_bar_gfx();
@@ -142,7 +143,7 @@ public void next_question () {
 	cont_next_question(listg[listg_index++]);
 	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
 	int count = listg.size;
-    statusbar1.push(0,@"Question $listg_index of $count");
+    statusbar1.push(0,@"Question $listg_index of $count. $listg_new_questions new questions left in the query.");
 }
 
 public void select_questions () {
@@ -310,6 +311,7 @@ public void put_all_questions_in_list () {
     }
     //read and interval is time based
 	if(radiobutton==3) {
+		listg_new_questions=0;
 		int tempint,j;
 		bool oneshot = true;
 		var vlocal_time = new DateTime.now_local();
@@ -324,7 +326,10 @@ public void put_all_questions_in_list () {
 		    bool add = false;
 		    bool addo = false;
 		    int64[7] stats = get_stats(i);
-	    	if(stats[4]==0) addo = true;
+	    	if(stats[4]==0) {
+	    		addo = true;
+	    		listg_new_questions++;
+    		}
 	    	//The intervals published in his paper were: 5 seconds, 25 seconds, 2 minutes 120, 10 minutes 600, 1 hour 3600, 5 hours 3600*5, 1 day 3600*24, 5 days 3600*24*5, 25 days 3600*24*25, (stop here for our purpose)4 months, 2 years.
 	
 	    	if(stats[4]==1 && (local_time-stats[3])>5) add = true;
