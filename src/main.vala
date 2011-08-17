@@ -311,6 +311,7 @@ public void put_all_questions_in_list () {
     }
     //read and interval is time based
 	if(radiobutton==3) {
+		var cbNew = builder.get_object ("checkbuttonNew") as CheckButton;
 		listg_new_questions=0;
 		int tempint,j;
 		bool oneshot = true;
@@ -345,7 +346,7 @@ public void put_all_questions_in_list () {
 	    	if(stats[4]==11 && (local_time-stats[3])>3600*24*7) add = true;
 	    	if(stats[4]==12 && (local_time-stats[3])>3600*24*14) add = true;
 		    
-			if(addo && oneshot){
+			if(addo && oneshot && cbNew.active == true){
 	    		listg.add(i);
 	    		oneshot = false;
 	    		printerr ("one shoot new interval %i - %s\n", i, get_elnum(i));
