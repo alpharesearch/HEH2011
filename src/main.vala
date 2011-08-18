@@ -363,6 +363,8 @@ public void put_all_questions_in_list () {
 	  	
     }
     if(radiobutton==4) {
+	    var cbNew = builder.get_object ("checkbuttonNew") as CheckButton;
+		listg_new_questions=0;
 		int tempint,j;
 		bool oneshot = true;
 		var vlocal_time = new DateTime.now_local();
@@ -377,7 +379,10 @@ public void put_all_questions_in_list () {
 		    bool add = false;
 		    bool addo = false;
 		    int64[7] stats = get_stats(i);
-	    	if(stats[6]==0) addo = true;
+	    	if(stats[6]==0){
+	    		addo = true;
+	    		listg_new_questions++;
+    		}
 	    	//The intervals published in his paper were: 5 seconds, 25 seconds, 2 minutes 120, 10 minutes 600, 1 hour 3600, 5 hours 3600*5, 1 day 3600*24, 5 days 3600*24*5, 25 days 3600*24*25, (stop here for our purpose)4 months, 2 years.
 	
 	    	if(stats[6]==1 && (local_time-stats[5])>5) add = true;
@@ -393,7 +398,7 @@ public void put_all_questions_in_list () {
 	    	if(stats[6]==11 && (local_time-stats[5])>3600*24*7) add = true;
 	    	if(stats[6]==12 && (local_time-stats[5])>3600*24*14) add = true;
 		    
-			if(addo && oneshot){
+			if(addo && oneshot && cbNew.active == true){
 	    		listg.add(i);
 	    		oneshot = false;
 	    		printerr ("one shoot new interval %i - %s\n", i, get_elnum(i));
