@@ -1188,6 +1188,7 @@ C. Signals are partially refracted around solid objects exhibiting sharp edges
 D. Signals propagated close to the band edge exhibiting a sharp cutoff
 
 
+
 ~~~
 T3C06 (A)
 What mode is responsible for allowing over-the-horizon VHF and UHF communications to ranges of approximately 300 miles on a regular basis?
@@ -3258,6 +3259,7 @@ D. All of these choices are correct
 T9A08 (C)
 What is the approximate length, in inches, of a quarter-wavelength vertical antenna for 146 MHz?
 A. 112
+
 B. 50
 C. 19
 D. 12
@@ -5826,10 +5828,8 @@ D. To the alternator or generator using resistor wire
 G4E04 (B) 
 Why is it best NOT to draw the DC power for a 100-watt HF transceiver from an automobile`s auxiliary power socket?
 A. The socket is not wired with an RF-shielded power cable
-B. The socket`s wiring may be inadequate for the current being drawn by the
-transceiver
-C. The DC polarity of the socket is reversed from the polarity of modern HF
-transceivers
+B. The socket`s wiring may be inadequate for the current being drawn by the transceiver
+C. The DC polarity of the socket is reversed from the polarity of modern HF transceivers
 D. Drawing more than 50 watts from this socket could cause the engine to overheat
 
 
@@ -7325,8 +7325,7 @@ G9A - Antenna feed lines: characteristic impedance, and attenuation; SWR calcula
 ~~~
 G9A01 (A)
 Which of the following factors determine the characteristic impedance of a parallel conductor antenna feed line?
-A. The distance between the centers of the conductors and the radius of the
-conductors
+A. The distance between the centers of the conductors and the radius of the conductors
 B. The distance between the centers of the conductors and the length of the line
 C. The radius of the conductors and the frequency of the signal
 D. The frequency of the signal and the length of the line

@@ -495,10 +495,18 @@ public void set_text (string el, string q, string k, string d1, string d2, strin
 	image1.set_from_stock("", IconSize.BUTTON);
 	labe11.label = q;
 	if(radiobutton==3){
+		Regex tRegEx = /choices are correct/;
 		button1.label = k;
-		button2.label = "";
-		button3.label = "";
-		button4.label = "";
+		if(tRegEx.match(k)){
+			button2.label = d1;
+			button3.label = d2;
+			button4.label = d3;
+		}
+		else{
+			button2.label = "";
+			button3.label = "";
+			button4.label = "";			
+		}
 		answerg = 1;
 	}
 	else{
