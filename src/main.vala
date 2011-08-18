@@ -92,12 +92,13 @@ public void check_answer (int myanswer) {
 		if(OK){ 
 	    	if(stats[1]<-2) stats[1] = -1; // if he faild before and gets it right set to -1
 	    		else stats[1]++; // if ok add one to fails
+	    	stats[6]++;
 	    }
 	    else{ 
 	    	if(stats[1]>=0) stats[1] = -2; // for first time or if later fail set to -2
 	    		else stats[1]--; // if not OK sub fails
 	    	stats[4]=0; //reset the read
-	    	stats[6]=0; //reset the interval 
+	    	stats[6]--; 
 	    }
 	    
 	    if(stats[0]>=3 && stats[1]>2)stats[2]++; // if try > 3 and fails also > 2 count learnd
@@ -106,6 +107,7 @@ public void check_answer (int myanswer) {
 	    	stats[0]=3;
 	    	stats[1]=3;
 	    	stats[2]=1;
+	    	stats[6]=2;
     	}
     }
     
@@ -118,7 +120,6 @@ public void check_answer (int myanswer) {
     if(radiobutton==4)
     {
 	    stats[5] = time.to_unix();
-	    stats[6]++;
     }
     
     set_stats(Q_ID, stats);
@@ -177,6 +178,7 @@ public string get_elnum(int ID){
 }
 
 public void put_all_questions_in_list () {
+	listg_new_questions=0;
 	int rc; 
 	listg_index=0;
 	listg = new ArrayList<int>();
@@ -216,6 +218,8 @@ public void put_all_questions_in_list () {
 	    list_temp.sort(compare_new);
 	    foreach ( int i in list_temp ) {
 	    	listg.add(i);
+	    	int64[7] stats = get_stats(i);
+	    	if(stats[0]==0) listg_new_questions++;
 	    	printerr ("eval %i - %s\n", i, get_elnum(i));
 	  	}
     }
@@ -224,7 +228,10 @@ public void put_all_questions_in_list () {
 	    //sort into the different lists
 	    foreach (int i in list_temp) {
 	        int64[7] stats = get_stats(i);
-	        if(stats[0] == 0) list_new.add(i);
+	        if(stats[0] == 0) {
+	        	list_new.add(i);
+	        	listg_new_questions++;
+	        }
 	        else if(stats[1] < 0) list_failed.add(i);
 	        	 else if(stats[2] > 2) list_learnd.add(i);
 	        		  else list_reinforce.add(i);
@@ -306,13 +313,14 @@ public void put_all_questions_in_list () {
 	    }
 	    foreach ( int i in list_temp ) {
 	    	listg.add(i);
+	    	int64[7] stats = get_stats(i);
+	    	if(stats[0]==0) listg_new_questions++;
 	    	printerr ("random %i - %s\n", i, get_elnum(i));
 	  	}
     }
     //read and interval is time based
 	if(radiobutton==3) {
 		var cbNew = builder.get_object ("checkbuttonNew") as CheckButton;
-		listg_new_questions=0;
 		int tempint,j;
 		bool oneshot = true;
 		var vlocal_time = new DateTime.now_local();
@@ -364,7 +372,6 @@ public void put_all_questions_in_list () {
     }
     if(radiobutton==4) {
 	    var cbNew = builder.get_object ("checkbuttonNew") as CheckButton;
-		listg_new_questions=0;
 		int tempint,j;
 		bool oneshot = true;
 		var vlocal_time = new DateTime.now_local();
@@ -379,7 +386,7 @@ public void put_all_questions_in_list () {
 		    bool add = false;
 		    bool addo = false;
 		    int64[7] stats = get_stats(i);
-	    	if(stats[6]==0){
+	    	if(stats[6]<=0){
 	    		addo = true;
 	    		listg_new_questions++;
     		}
