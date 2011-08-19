@@ -187,3 +187,55 @@ public bool on_drawingarea3_expose_event  (Gdk.EventExpose event) {
 		create_gfx_for_bar(cr,create_stats_for_bar("E%"));
         return false;
 }  
+
+public void color_checkmark () {
+	Gdk.Color white;
+	Gdk.Color.parse("white", out white);
+	Gdk.Color red;
+	Gdk.Color.parse("red", out red);
+	Gdk.Color blue;
+	Gdk.Color.parse("blue", out blue);
+	Gdk.Color skyblue;
+	Gdk.Color.parse("skyblue", out skyblue);
+	Gdk.Color green;
+	Gdk.Color.parse("green", out green);
+
+	CheckButton cbt[31];
+	for (int i=1; i<= 30;i++) {
+	cbt[i-1] = builder.get_object ("checkbutton"+i.to_string()) as CheckButton;
+	}
+	string search="";
+	
+	for (int i=0, ii=1; i<= 29;i++) {
+		if(i==9) ii=0;
+		if(i>=0 && i<=9) search="T"+ii.to_string();
+		
+		if(i==19) ii=0;
+		if(i>=10 && i<=19) search="G"+ii.to_string();
+		
+		if(i==29) ii=0;
+		if(i>=20 && i<=29) search="E"+ii.to_string();
+		
+		int[] stats = create_stats_for_bar(search+"%");
+	//                                          white     red       green      blue
+	//                                          all       faild    learnd    reinfoce
+	//stderr.printf ("BAR: %d %d %d %d\n", stats[0], stats[1], stats[2], stats[3]);
+		
+		if(radiobutton==0 || radiobutton==1 || radiobutton==2 || radiobutton==4){
+			if(stats[1]+stats[2]+stats[3] == 0) cbt[i].modify_base(StateType.NORMAL, white);
+			  else if(stats[2] > ((stats[0]+stats[1]+stats[2]+stats[3])*0.9)) cbt[i].modify_base(StateType.NORMAL, green);
+			   else if(stats[1] >= 1) cbt[i].modify_base(StateType.NORMAL, red);  
+				else if(stats[3] > stats[0]+stats[2]+stats[1]) cbt[i].modify_base(StateType.NORMAL, blue);
+				 else cbt[i].modify_base(StateType.NORMAL, skyblue);
+		}
+		else{
+			if(stats[5]+stats[6] == 0) cbt[i].modify_base(StateType.NORMAL, white);  
+			  else if(stats[5] > 0) cbt[i].modify_base(StateType.NORMAL, blue);
+				else if(stats[6] >= stats[5]+stats[4]) cbt[i].modify_base(StateType.NORMAL, green);
+				  else cbt[i].modify_base(StateType.NORMAL, skyblue);
+		}
+		ii++;
+	}
+	
+	
+}

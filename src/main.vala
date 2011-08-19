@@ -136,6 +136,7 @@ public void check_answer (int myanswer) {
         labe14.label = "Nice try!";
     }
     update_bar_gfx();
+    color_checkmark();
 }
 
 public void next_question () {
@@ -150,7 +151,6 @@ public void next_question () {
 public void select_questions () {
 	statusbar1 = builder.get_object ("statusbar1") as Statusbar;
     statusbar1.push(0,"Loading... WAIT");
-    color_checkmark();
     if(non_selected) return;
 	//get list of IDs from slected questions
 	create_selected_questions ();
