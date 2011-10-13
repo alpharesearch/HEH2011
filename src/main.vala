@@ -507,7 +507,7 @@ public void set_text (string el, string q, string k, string d1, string d2, strin
 	image1.set_from_stock("", IconSize.BUTTON);
 	labe11.label = q;
 	if(radiobutton==3){
-		Regex tRegEx = /choices are correct/;
+		Regex tRegEx = /answers|choices are correct/;
 		button1.label = k;
 		if(tRegEx.match(k)){
 			button2.label = d1;

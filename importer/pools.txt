@@ -7904,6 +7904,8 @@ C. Any transmitter that contributes 5% or more of the MPE
 D. Only those that operate at more than 50% duty cycle
 
 
+
+
 ~~~
 G0A07 (A)  
 What effect does transmitter duty cycle have when evaluating RF exposure? 
@@ -8893,8 +8895,7 @@ D. The uplink and downlink frequencies
 
 ~~~
 E2A06 (A)
-On what band would a satellite receive signals if it were operating in 
-mode U/V? 
+On what band would a satellite receive signals if it were operating in mode U/V? 
 A. 432 MHz
 B. 144 MHz
 C. 50 MHz
